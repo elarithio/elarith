@@ -503,3 +503,9 @@ function countUp(el,target,dur){var start=null;dur=dur||1800;function step(ts){i
 var cObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target,parseInt(e.target.dataset.target));cObs.unobserve(e.target);}});},{threshold:.5});
 var countEls=document.querySelectorAll('.count-up');
 for(var i=0;i<
+
+
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('formSuccess').style.display='block';this.reset();});
+</script>
+</body>
+</html>
