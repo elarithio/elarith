@@ -509,3 +509,9 @@ document.getElementById('contactForm').addEventListener('submit',function(e){e.p
 </script>
 </body>
 </html>
+
+
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('formSuccess').style.display='block';this.reset();});
+</script>
+</body>
+</html>
