@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELD × Elarith — Case Study</title>
+<title>VELD Meridian</title>
 <meta name="description" content="VELD Meridian — Carried, Not Collected. A military lifestyle EDC campaign by Elarith.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,10 +11,10 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --black:#080705;--deep:#0d0b09;--surface:#111009;
-  --amber:#c8861a;--amber-glow:#f0b84a;--amber-dim:#7a4f0d;--amber-faint:#3a2208;
-  --text:#e8dcc8;--text-muted:#8a7a62;--text-faint:#3a3228;
-  --border:rgba(200,134,26,0.10);--border-bright:rgba(200,134,26,0.28);
+--black:#080705;--deep:#0d0b09;--surface:#111009;
+--amber:#c8861a;--amber-glow:#f0b84a;--amber-dim:#7a4f0d;--amber-faint:#3a2208;
+--text:#e8dcc8;--text-muted:#8a7a62;--text-faint:#3a3228;
+--border:rgba(200,134,26,0.10);--border-bright:rgba(200,134,26,0.28);
 }
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none}
@@ -47,7 +47,6 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,110px);font-weight:300;line-height:.92;letter-spacing:-.02em;margin-bottom:36px;opacity:0;animation:fadeUp 1.2s ease forwards .4s}
 .cs-hero h1 em{font-style:italic;color:var(--amber-glow)}
 .cs-hero-meta{display:flex;gap:60px;flex-wrap:wrap;padding-top:40px;border-top:1px solid var(--border);opacity:0;animation:fadeUp 1s ease forwards .7s}
-.cs-meta-item{}
 .cs-meta-label{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
 .cs-meta-value{font-size:14px;color:var(--text-muted);line-height:1.5}
 
@@ -55,13 +54,18 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-renders{padding:0 60px;position:relative;z-index:1}
 .render-hero{width:100%;aspect-ratio:16/7;background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden;margin-bottom:2px;display:flex;align-items:center;justify-content:center}
 .render-hero img{width:100%;height:100%;object-fit:cover;display:block}
-.render-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:absolute;inset:0}
-.render-placeholder-icon{width:56px;height:56px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;color:var(--amber-dim);font-size:22px}
-.render-placeholder p{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
-.render-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+.render-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
 .render-slot{aspect-ratio:4/3;background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.render-slot img{width:100%;height:100%;object-fit:cover;display:block}
+.render-slot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.render-slot:hover img{transform:scale(1.03)}
 .render-label{position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(8,7,5,.9),transparent);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint)}
+
+/* CAMPAIGN LINE */
+.cs-campaign{padding:120px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);text-align:center;position:relative;z-index:1}
+.cs-campaign-eyebrow{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:16px}
+.cs-campaign-eyebrow::before,.cs-campaign-eyebrow::after{content:'';display:block;width:48px;height:1px;background:var(--amber)}
+.cs-campaign h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:.95;letter-spacing:-.02em;color:var(--text-muted)}
+.cs-campaign h2 em{font-style:italic;color:var(--amber-glow)}
 
 /* BODY SECTIONS */
 .cs-body{max-width:1200px;margin:0 auto;padding:0 60px}
@@ -85,14 +89,14 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-pillar h4{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--text);margin-bottom:7px}
 .cs-pillar p{font-size:13px;line-height:1.8;color:var(--text-muted)}
 
-/* VISUAL LANGUAGE TAGS */
+/* VISUAL LANGUAGE */
 .cs-vl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);margin-top:8px}
 .cs-vl-item{background:var(--black);padding:28px 28px;transition:background .3s}
 .cs-vl-item:hover{background:var(--surface)}
 .cs-vl-item h4{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--text);margin-bottom:8px}
 .cs-vl-item p{font-size:12px;line-height:1.75;color:var(--text-muted)}
 
-/* METRICS TABLE */
+/* METRICS */
 .cs-metrics{margin-top:8px;border:1px solid var(--border);overflow:hidden}
 .cs-metrics-header{display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border)}
 .cs-metrics-header span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);padding:16px 24px}
@@ -104,18 +108,32 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-metrics-cell.metric-proj{color:var(--amber);font-weight:700;font-family:'Cormorant Garamond',serif;font-size:18px}
 .cs-metrics-note{font-size:11px;color:var(--text-faint);line-height:1.7;margin-top:20px;padding:16px 20px;border:1px solid var(--border);font-style:italic}
 
-/* VIDEO SLOT */
-.cs-video{padding:0 60px 2px;position:relative;z-index:1}
-.cs-video-slot{width:100%;aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.cs-video-slot video{width:100%;height:100%;object-fit:cover}
-.video-label{position:absolute;top:20px;left:20px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-dim);border:1px solid var(--border);padding:5px 12px;background:rgba(8,7,5,.7);backdrop-filter:blur(8px)}
+/* VIDEO SECTION */
+.cs-videos{padding:0 60px;position:relative;z-index:1}
+.cs-videos-header{padding:60px 0 32px;border-top:1px solid var(--border)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.video-item{position:relative;background:var(--surface);overflow:hidden}
+.video-item video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.video-item-hero{grid-column:1/-1}
+.video-item-hero video{aspect-ratio:16/7}
+.video-item-full{grid-column:1/-1}
+.video-item-full video{aspect-ratio:16/7}
+.video-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(to top,rgba(8,7,5,.9),transparent);display:flex;align-items:center;justify-content:space-between}
+.video-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
 
-/* CAMPAIGN LINE */
-.cs-campaign{padding:120px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);text-align:center;position:relative;z-index:1}
-.cs-campaign-eyebrow{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:16px}
-.cs-campaign-eyebrow::before,.cs-campaign-eyebrow::after{content:'';display:block;width:48px;height:1px;background:var(--amber)}
-.cs-campaign h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:.95;letter-spacing:-.02em;color:var(--text-muted)}
-.cs-campaign h2 em{font-style:italic;color:var(--amber-glow)}
+/* CAMPAIGN GALLERY */
+.cs-gallery{padding:0 60px;position:relative;z-index:1}
+.cs-gallery-header{padding:60px 0 32px;border-top:1px solid var(--border)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.gallery-item{position:relative;overflow:hidden;background:var(--surface);cursor:pointer}
+.gallery-item img{width:100%;display:block;object-fit:cover;aspect-ratio:4/3;transition:transform .6s ease}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-item-wide{grid-column:span 2}
+.gallery-item-wide img{aspect-ratio:16/9}
+.gallery-item-full{grid-column:1/-1}
+.gallery-item-full img{aspect-ratio:16/7}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;padding:14px 18px;background:linear-gradient(to top,rgba(8,7,5,.88),transparent);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);opacity:0;transition:opacity .3s}
+.gallery-item:hover .gallery-caption{opacity:1}
 
 /* CTA */
 .cs-cta{padding:120px 60px;text-align:center;position:relative;z-index:1}
@@ -129,8 +147,6 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .btn-primary span{position:relative;z-index:1}
 .btn-secondary{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .3s}
 .btn-secondary:hover{color:var(--amber)}
-.btn-secondary .arr{transition:transform .3s}
-.btn-secondary:hover .arr{transform:translateX(4px)}
 
 footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;position:relative;z-index:1;background:var(--surface)}
 .f-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-dim)}
@@ -145,35 +161,40 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
 .d1{transition-delay:.12s}.d2{transition-delay:.22s}.d3{transition-delay:.32s}
 
 @media(max-width:1024px){
-  nav{padding:24px 40px}nav.scrolled{padding:18px 40px}
-  .cs-hero{padding:140px 40px 60px}
-  .cs-renders{padding:0 40px}
-  .cs-video{padding:0 40px 2px}
-  .cs-body{padding:0 40px}
-  .cs-section-grid{grid-template-columns:1fr;gap:40px}
-  .cs-campaign{padding:80px 40px}
-  .cs-cta{padding:80px 40px}
-  footer{padding:36px 40px}
-  .render-grid{grid-template-columns:1fr 1fr}
-  .cs-vl-grid{grid-template-columns:1fr}
+nav{padding:24px 40px}nav.scrolled{padding:18px 40px}
+.cs-hero{padding:140px 40px 60px}
+.cs-renders,.cs-videos,.cs-gallery{padding:0 40px}
+.cs-body{padding:0 40px}
+.cs-section-grid{grid-template-columns:1fr;gap:40px}
+.cs-campaign{padding:80px 40px}
+.cs-cta{padding:80px 40px}
+footer{padding:36px 40px}
+.render-grid{grid-template-columns:1fr 1fr}
+.cs-vl-grid{grid-template-columns:1fr}
+.video-grid{grid-template-columns:1fr}
+.video-item-hero,.video-item-full{grid-column:1}
+.gallery-grid{grid-template-columns:1fr 1fr}
+.gallery-item-wide{grid-column:1/-1}
 }
 @media(max-width:640px){
-  nav{padding:20px 24px}
-  .cs-hero{padding:120px 24px 48px}
-  .cs-hero-meta{gap:32px}
-  .cs-renders{padding:0 24px}
-  .cs-video{padding:0 24px 2px}
-  .cs-body{padding:0 24px}
-  .cs-section{padding:60px 0}
-  .cs-campaign{padding:60px 24px}
-  .cs-cta{padding:60px 24px}
-  .render-grid{grid-template-columns:1fr}
-  .cs-metrics-header,.cs-metrics-row{grid-template-columns:1.5fr 1fr 1fr}
-  footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
+nav{padding:20px 24px}
+.cs-hero{padding:120px 24px 48px}
+.cs-hero-meta{gap:32px}
+.cs-renders,.cs-videos,.cs-gallery{padding:0 24px}
+.cs-body{padding:0 24px}
+.cs-section{padding:60px 0}
+.cs-campaign{padding:60px 24px}
+.cs-cta{padding:60px 24px}
+.render-grid{grid-template-columns:1fr}
+.cs-metrics-header,.cs-metrics-row{grid-template-columns:1.5fr 1fr 1fr}
+footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
+.gallery-grid{grid-template-columns:1fr}
+.gallery-item-wide,.gallery-item-full{grid-column:1}
 }
 </style>
 </head>
 <body>
+
 <canvas id="starfield"></canvas>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -184,7 +205,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <a href="index.html#contact" class="nav-cta">Start a Project</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO TEXT -->
 <section class="cs-hero">
   <div class="cs-hero-glow"></div>
   <div class="hl top"></div>
@@ -206,7 +227,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     </div>
     <div class="cs-meta-item">
       <div class="cs-meta-label">Deliverables</div>
-      <div class="cs-meta-value">3 Hero Stills · 1 Video Loop · 3 Social Variants</div>
+      <div class="cs-meta-value">5 Hero Stills · 4 Video Loops · Social Variants</div>
     </div>
     <div class="cs-meta-item">
       <div class="cs-meta-label">Target</div>
@@ -215,26 +236,23 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </section>
 
-<!-- HERO RENDER -->
+<!-- HERO IMAGE + 3-STILL GRID -->
 <div class="cs-renders">
   <div class="render-hero reveal">
-    <div class="render-placeholder">
-      <div class="render-placeholder-icon">◈</div>
-      <p>Hero Render — Coming</p>
-    </div>
+    <img src="veld-hero.png" alt="VELD Meridian — Hero">
   </div>
   <div class="render-grid" style="background:var(--border)">
     <div class="render-slot reveal">
-      <div class="render-placeholder"><div class="render-placeholder-icon" style="width:40px;height:40px;font-size:16px">◈</div></div>
-      <div class="render-label">Still 01 — Pre-Dawn Kit</div>
+      <img src="veld-still-garage.png" alt="VELD — Garage">
+      <div class="render-label">Garage — Pre-Dawn Kit</div>
     </div>
     <div class="render-slot reveal d1">
-      <div class="render-placeholder"><div class="render-placeholder-icon" style="width:40px;height:40px;font-size:16px">◈</div></div>
-      <div class="render-label">Still 02 — Truck Bed</div>
+      <img src="veld-still-tarmac.png" alt="VELD — Tarmac">
+      <div class="render-label">Tarmac — Field Ready</div>
     </div>
     <div class="render-slot reveal d2">
-      <div class="render-placeholder"><div class="render-placeholder-icon" style="width:40px;height:40px;font-size:16px">◈</div></div>
-      <div class="render-label">Still 03 — Last Light</div>
+      <img src="veld-still-trailhead day.png" alt="VELD — Trailhead Day">
+      <div class="render-label">Trailhead — Last Light</div>
     </div>
   </div>
 </div>
@@ -245,10 +263,9 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <h2><em>Carried,</em><br>not collected.</h2>
 </div>
 
-<!-- BODY -->
+<!-- BODY COPY -->
 <div class="cs-body">
 
-  <!-- THE BRAND -->
   <div class="cs-section reveal">
     <div class="cs-section-grid">
       <div>
@@ -263,7 +280,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     </div>
   </div>
 
-  <!-- THE BRIEF -->
   <div class="cs-section reveal">
     <div class="cs-section-grid">
       <div>
@@ -279,7 +295,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     </div>
   </div>
 
-  <!-- THE STRATEGY -->
   <div class="cs-section reveal">
     <div class="cs-section-grid">
       <div>
@@ -288,7 +303,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
       </div>
       <div>
         <h2 class="cs-section-title"><em>Hypothesis:</em> identity resonance outperforms spec-led creative 3–5× in this vertical.</h2>
-        <p class="cs-body-text">Imagery that reflects how this community actually lives — not how brands imagine they live — produces dramatically higher thumb-stop and save rates on paid social. The data from adjacent verticals (tactical apparel, premium knife brands) supports this consistently.</p>
+        <p class="cs-body-text">Imagery that reflects how this community actually lives — not how brands imagine they live — produces dramatically higher thumb-stop and save rates on paid social.</p>
         <div class="cs-pillars">
           <div class="cs-pillar">
             <div class="cs-pillar-num">01</div>
@@ -318,20 +333,49 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
 
 </div>
 
-<!-- VIDEO SLOT -->
-<div class="cs-video">
-  <div class="cs-video-slot reveal">
-    <div class="render-placeholder">
-      <div class="render-placeholder-icon">▶</div>
-      <p>15-Second Video Loop — Coming</p>
+<!-- VIDEO SECTION -->
+<div class="cs-videos">
+  <div class="cs-videos-header reveal">
+    <div class="cs-section-label">Campaign Video</div>
+  </div>
+  <div class="video-grid reveal">
+    <div class="video-item video-item-hero">
+      <video autoplay muted loop playsinline>
+        <source src="veld-hero-video.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <span class="video-tag">Hero — Full Campaign</span>
+      </div>
     </div>
-    <div class="video-label">:15 Video — Pre-Dawn Kit Check</div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="veld-video-garage.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <span class="video-tag">Garage — Pre-Dawn Kit Check</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="veld-video-tarmac.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <span class="video-tag">Tarmac — Field Ready</span>
+      </div>
+    </div>
+    <div class="video-item video-item-full">
+      <video autoplay muted loop playsinline>
+        <source src="veld-video-trailhead day.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <span class="video-tag">Trailhead — Last Light</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="cs-body">
 
-  <!-- VISUAL LANGUAGE -->
   <div class="cs-section reveal">
     <div class="cs-section-grid">
       <div>
@@ -363,7 +407,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     </div>
   </div>
 
-  <!-- METRICS -->
   <div class="cs-section reveal">
     <div class="cs-section-grid">
       <div>
@@ -375,9 +418,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
         <p class="cs-body-text">Modeled against Meta creative benchmarks Q4 2025 and comparable identity-driven campaigns in adjacent verticals — tactical apparel, premium knife brands, and outdoor gear with a military-lifestyle audience.</p>
         <div class="cs-metrics">
           <div class="cs-metrics-header">
-            <span>Metric</span>
-            <span>Benchmark</span>
-            <span>VELD Projection</span>
+            <span>Metric</span><span>Benchmark</span><span>VELD Projection</span>
           </div>
           <div class="cs-metrics-row">
             <div class="cs-metrics-cell metric-name">Thumb-Stop Rate</div>
@@ -405,6 +446,35 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     </div>
   </div>
 
+</div>
+
+<!-- FULL CAMPAIGN ASSET GALLERY -->
+<div class="cs-gallery">
+  <div class="cs-gallery-header reveal">
+    <div class="cs-section-label">Full Campaign Assets</div>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item gallery-item-wide">
+      <img src="veld-still-garage.png" alt="VELD — Garage">
+      <div class="gallery-caption">Garage — Pre-Dawn Kit</div>
+    </div>
+    <div class="gallery-item">
+      <img src="veld-still-trailhead night.png" alt="VELD — Trailhead Night">
+      <div class="gallery-caption">Trailhead — Night</div>
+    </div>
+    <div class="gallery-item">
+      <img src="veld-still-tarmac.png" alt="VELD — Tarmac">
+      <div class="gallery-caption">Tarmac — Field Ready</div>
+    </div>
+    <div class="gallery-item gallery-item-wide">
+      <img src="veld-still-trailhead day.png" alt="VELD — Trailhead Day">
+      <div class="gallery-caption">Trailhead — Last Light</div>
+    </div>
+    <div class="gallery-item gallery-item-full">
+      <img src="veld-hero.png" alt="VELD — Hero">
+      <div class="gallery-caption">Hero — Full Campaign</div>
+    </div>
+  </div>
 </div>
 
 <!-- CTA -->
@@ -447,9 +517,7 @@ for(var i=0;i<hoverEls.length;i++){
   hoverEls[i].addEventListener('mouseenter',function(){cur.style.width='14px';cur.style.height='14px';cur.style.background='var(--amber-glow)';cring.style.width='48px';cring.style.height='48px';});
   hoverEls[i].addEventListener('mouseleave',function(){cur.style.width='8px';cur.style.height='8px';cur.style.background='var(--amber)';cring.style.width='36px';cring.style.height='36px';});
 }
-
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
-
 var revEls=document.querySelectorAll('.reveal');
 var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
 for(var i=0;i<revEls.length;i++)obs.observe(revEls[i]);

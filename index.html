@@ -161,31 +161,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
 .f-links{display:flex;gap:28px;list-style:none}
 .f-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .3s}
 .f-links a:hover{color:var(--amber)}
-/* ── WORK SECTION ── */
-.work{padding:160px 60px;position:relative;z-index:1}
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin-top:80px}
-.work-card{background:var(--black);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;display:block}
-.work-card:hover{background:var(--surface)}
-.work-img{width:100%;aspect-ratio:4/3;background:var(--surface);overflow:hidden;position:relative}
-.work-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}
-.work-img-placeholder::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--deep) 0%,var(--surface) 50%,var(--deep) 100%)}
-.work-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-.work-card:hover .work-img img{transform:scale(1.04)}
-.work-img-label{position:absolute;bottom:16px;right:16px;font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-dim);border:1px solid var(--border);padding:5px 10px;background:rgba(8,7,5,.7);backdrop-filter:blur(8px);z-index:2}
-.work-body{padding:36px 36px 44px}
-.work-vertical{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
-.work-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;line-height:1.15;color:var(--text);margin-bottom:12px;transition:color .3s}
-.work-card:hover .work-title{color:var(--amber-glow)}
-.work-desc{font-size:13px;line-height:1.8;color:var(--text-muted);margin-bottom:28px}
-.work-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
-.work-link{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-dim);display:flex;align-items:center;gap:8px;transition:color .3s}
-.work-card:hover .work-link{color:var(--amber)}
-.work-link .arr{transition:transform .3s}
-.work-card:hover .work-link .arr{transform:translateX(4px)}
-.work-coming{opacity:.38;pointer-events:none}
-.work-coming .work-img-placeholder::after{content:'Coming Soon';position:absolute;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);z-index:2}
-@media(max-width:1024px){.work{padding:100px 40px}.work-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.work{padding:80px 24px}.work-body{padding:28px 24px 36px}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -237,7 +212,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#verticals" onclick="closeMobile()">Verticals</a>
   <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="#work" onclick="closeMobile()">Work</a>
   <a href="#process" onclick="closeMobile()">Process</a>
   <a href="#contact" class="mobile-cta-btn" onclick="closeMobile()">Start a Project</a>
 </div>
@@ -248,7 +222,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     <li><a href="#about">About</a></li>
     <li><a href="#verticals">Verticals</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Start a Project</a>
@@ -362,56 +335,8 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </section>
 
-<section class="work" id="work">
-  <span class="sec-num">05</span>
-  <div class="sec-header reveal">
-    <div><div class="sec-label">Our Work</div><h2 class="sec-title">Campaigns that<br><em>earn attention.</em></h2></div>
-    <p style="font-size:13px;color:var(--text-muted);max-width:320px;line-height:1.8;">Spec campaigns demonstrating Elarith's approach across all three verticals.</p>
-  </div>
-  <div class="work-grid">
-    <a class="work-card reveal" href="veld.html">
-      <div class="work-img">
-        <div class="work-img-placeholder">
-          <div class="work-img-label">Renders Coming</div>
-        </div>
-      </div>
-      <div class="work-body">
-        <div class="work-vertical">Military Lifestyle</div>
-        <h3 class="work-title">VELD Meridian — Carried, Not Collected</h3>
-        <p class="work-desc">A premium EDC flashlight brand built for operators who carry what they trust. Identity-first campaign targeting post-9/11 veterans and serious outdoor carries.</p>
-        <div class="work-tags"><span class="tag">AI Renders</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
-        <div class="work-link">View Case Study <span class="arr">→</span></div>
-      </div>
-    </a>
-    <div class="work-card work-coming reveal d1">
-      <div class="work-img">
-        <div class="work-img-placeholder"></div>
-      </div>
-      <div class="work-body">
-        <div class="work-vertical">Music Hardware</div>
-        <h3 class="work-title">Case Study — Coming Soon</h3>
-        <p class="work-desc">A boutique synthesizer brand campaign targeting the obsessive, gear-driven communities that define music culture.</p>
-        <div class="work-tags"><span class="tag">AI Renders</span><span class="tag">Ad Campaign</span></div>
-        <div class="work-link">In Development <span class="arr">→</span></div>
-      </div>
-    </div>
-    <div class="work-card work-coming reveal d2">
-      <div class="work-img">
-        <div class="work-img-placeholder"></div>
-      </div>
-      <div class="work-body">
-        <div class="work-vertical">Defense Tech</div>
-        <h3 class="work-title">Case Study — Coming Soon</h3>
-        <p class="work-desc">A next-generation defense tech startup campaign built for credibility, talent acquisition, and procurement attention.</p>
-        <div class="work-tags"><span class="tag">AI Renders</span><span class="tag">Brand Identity</span></div>
-        <div class="work-link">In Development <span class="arr">→</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="process" id="process">
-  <span class="sec-num">06</span>
+  <span class="sec-num">05</span>
   <div class="sec-header reveal">
     <div><div class="sec-label">How We Work</div><h2 class="sec-title">Precise.<br><em>Relentless.</em></h2></div>
   </div>
@@ -429,7 +354,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     <h2>Ready to be<br><em>unforgettable?</em></h2>
     <p>Tell us about your brand. We'll tell you exactly how we'd make it impossible to ignore. No fluff, no decks — just a real conversation about what's possible.</p>
     <div class="contact-info">
-      <a href="/cdn-cgi/l/email-protection#f8909d949497b89d94998a918c90d69197" class="c-link"><div class="c-link-ico">✉</div><span class="__cf_email__" data-cfemail="5139343d3d3e11343d30233825397f383e">[email&#160;protected]</span></a>
+      <a href="mailto:hello@elarith.io" class="c-link"><div class="c-link-ico">✉</div>hello@elarith.io</a>
       <a href="https://instagram.com/weareelarith" target="_blank" class="c-link"><div class="c-link-ico">◈</div>@weareelarith</a>
     </div>
   </div>
@@ -452,7 +377,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
       </div>
       <div class="fg"><label>Tell us about your project</label><textarea rows="5" placeholder="What are you working on? What's the challenge?"></textarea></div>
       <button type="submit" class="form-btn">Send Message</button>
-      <div class="form-success" id="formSuccess">✦ &nbsp; Message received. We'll be in touch within 24 hours at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddb5b8b1b1b29db8b1bcafb4a9b5f3b4b2">[email&#160;protected]</a></div>
+      <div class="form-success" id="formSuccess">✦ &nbsp; Message received. We'll be in touch within 24 hours at hello@elarith.io</div>
     </form>
   </div>
 </section>
@@ -462,12 +387,12 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <div class="f-copy">© 2026 Elarith. All rights reserved.</div>
   <ul class="f-links">
     <li><a href="https://instagram.com/weareelarith" target="_blank">Instagram</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#4a222f2626250a2f262b38233e22642325">Email</a></li>
+    <li><a href="mailto:hello@elarith.io">Email</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 var canvas=document.getElementById('starfield');
 var sctx=canvas.getContext('2d');
 var stars=[];
@@ -504,7 +429,12 @@ var cObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInt
 var countEls=document.querySelectorAll('.count-up');
 for(var i=0;i<countEls.length;i++)cObs.observe(countEls[i]);
 
-document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('formSuccess').style.display='block';this.reset();});
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=this.querySelector('.form-btn');
+  btn.textContent='Sending...';btn.style.opacity='.6';
+  setTimeout(function(){btn.style.display='none';document.getElementById('formSuccess').style.display='block';},1200);
+});
 </script>
 </body>
 </html>
