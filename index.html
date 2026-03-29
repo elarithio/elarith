@@ -156,7 +156,7 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .form-btn:hover{background:var(--amber-glow)}
 .form-success{display:none;padding:20px 24px;border:1px solid var(--border-bright);background:var(--amber-faint);font-size:13px;color:var(--amber);line-height:1.6}
 footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;position:relative;z-index:1;background:var(--surface)}
-.f-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-dim)}
+.work-section{padding:160px 60px;position:relative;z-index:1;border-top:1px solid var(--border)}.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin-top:80px}.work-card{background:var(--black);padding:52px 44px;position:relative;overflow:hidden;transition:background .4s;text-decoration:none;display:block;color:var(--text)}.work-card::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber-dim),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .5s}.work-card:hover{background:var(--surface)}.work-card:hover::before{transform:scaleX(1)}.work-card-tag{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;display:flex;align-items:center;gap:10px}.work-card-tag::before{content:"";display:block;width:16px;height:1px;background:var(--amber)}.work-card-title{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:300;line-height:1.2;margin-bottom:14px;color:var(--text)}.work-card-desc{font-size:13px;line-height:1.8;color:var(--text-muted);margin-bottom:32px}.work-card-cta{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-dim);transition:color .3s}.work-card:hover .work-card-cta{color:var(--amber)}.work-card-coming{opacity:.45;pointer-events:none}.f-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-dim)}
 .f-copy{font-size:11px;letter-spacing:.08em;color:var(--text-faint)}
 .f-links{display:flex;gap:28px;list-style:none}
 .f-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .3s}
@@ -212,7 +212,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#verticals" onclick="closeMobile()">Verticals</a>
   <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="veld.html" onclick="closeMobile()">Work</a><a href="#process" onclick="closeMobile()">Process</a>
+  <a href="veld.html" onclick="closeMobile()">Work</a><a href="#work" onclick="closeMobile()">Work</a><a href="#process" onclick="closeMobile()">Process</a>
   <a href="#contact" class="mobile-cta-btn" onclick="closeMobile()">Start a Project</a>
 </div>
 
@@ -222,7 +222,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     <li><a href="#about">About</a></li>
     <li><a href="#verticals">Verticals</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="veld.html">Work</a></li><li><a href="#process">Process</a></li>
+    <li><a href="veld.html">Work</a></li><li><a href="#work">Work</a></li><li><a href="#process">Process</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Start a Project</a>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -335,7 +335,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </section>
 
-<section class="process" id="process">
+<section class="work-section" id="work"><span class="sec-num">05</span><div class="sec-header reveal"><div><div class="sec-label">Our Work</div><h2 class="sec-title">Campaigns that <em>earn attention.</em></h2></div></div><p style="font-size:14px;color:var(--text-muted);margin-bottom:64px;max-width:560px">Spec campaigns demonstrating Elarith's approach across all three verticals.</p><div class="work-grid"><a href="veld.html" class="work-card reveal"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">VELD Meridian — Carried, Not Collected</h3><p class="work-card-desc">A premium EDC flashlight brand built for operators who carry what they trust. Identity-first campaign targeting post-9/11 veterans and serious EDC carriers.</p><div class="card-tags" style="margin-bottom:32px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></a><a href="kern.html" class="work-card reveal d1"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">KERN Traverse — Quiet. Ready. Yours.</h3><p class="work-card-desc">A premium EDC hip pack built for concealed carriers who live prepared without performing it. Identity-first campaign targeting serious EDC carriers and off-duty law enforcement.</p><div class="card-tags" style="margin-bottom:32px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></a><div class="work-card work-card-coming reveal d2"><div class="work-card-tag">Music Hardware</div><h3 class="work-card-title">Case Study — Coming Soon</h3><p class="work-card-desc">A boutique synthesizer brand campaign targeting the obsessive, gear-driven communities that define music culture.</p><div class="card-tags" style="margin-bottom:32px"><span class="tag">Hybrid Production</span><span class="tag">Ad Campaign</span></div><div class="work-card-cta">In Development →</div></div></div></section><section class="process" id="process">
   <span class="sec-num">05</span>
   <div class="sec-header reveal">
     <div><div class="sec-label">How We Work</div><h2 class="sec-title">Precise.<br><em>Relentless.</em></h2></div>
