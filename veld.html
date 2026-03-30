@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELD Meridian</title>
+<title>VELD × Elarith — Case Study</title>
 <meta name="description" content="VELD Meridian — Carried, Not Collected. A military lifestyle EDC campaign by Elarith.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +23,6 @@ body::before{content:'';position:fixed;inset:0;opacity:.022;pointer-events:none;
 .cursor{position:fixed;width:8px;height:8px;background:var(--amber);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(200,134,26,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s}
 #starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:28px 60px;display:flex;justify-content:space-between;align-items:center;transition:background .4s,padding .4s}
 nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-glow);text-decoration:none}
@@ -32,8 +30,6 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .nav-back:hover{color:var(--amber)}
 .nav-cta{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);text-decoration:none;border:1px solid var(--border-bright);padding:10px 24px;transition:all .3s}
 .nav-cta:hover{background:var(--amber);color:var(--black)}
-
-/* HERO */
 .cs-hero{min-height:75vh;display:flex;flex-direction:column;justify-content:flex-end;padding:160px 60px 80px;position:relative;overflow:hidden;z-index:1;border-bottom:1px solid var(--border)}
 .cs-hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(200,134,26,.05) 0%,transparent 68%);top:40%;left:40%;transform:translate(-50%,-50%);pointer-events:none}
 .hl{position:absolute;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);pointer-events:none}
@@ -49,25 +45,30 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-hero-meta{display:flex;gap:60px;flex-wrap:wrap;padding-top:40px;border-top:1px solid var(--border);opacity:0;animation:fadeUp 1s ease forwards .7s}
 .cs-meta-label{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
 .cs-meta-value{font-size:14px;color:var(--text-muted);line-height:1.5}
-
-/* RENDER SLOTS */
 .cs-renders{padding:0 60px;position:relative;z-index:1}
-.render-hero{width:100%;aspect-ratio:16/7;background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden;margin-bottom:2px;display:flex;align-items:center;justify-content:center}
+.render-hero{width:100%;aspect-ratio:16/7;background:var(--surface);position:relative;overflow:hidden;margin-bottom:2px}
 .render-hero img{width:100%;height:100%;object-fit:cover;display:block}
 .render-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.render-slot{aspect-ratio:4/3;background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.render-slot{aspect-ratio:4/3;background:var(--surface);position:relative;overflow:hidden}
 .render-slot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
 .render-slot:hover img{transform:scale(1.03)}
 .render-label{position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(8,7,5,.9),transparent);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint)}
-
-/* CAMPAIGN LINE */
+.cs-videos{padding:0 60px;position:relative;z-index:1}
+.cs-videos-header{padding:60px 0 32px;border-top:1px solid var(--border)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.video-item{position:relative;background:var(--surface);overflow:hidden}
+.video-item video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.video-item-hero{grid-column:1/-1}
+.video-item-hero video{aspect-ratio:16/7}
+.video-item-full{grid-column:1/-1}
+.video-item-full video{aspect-ratio:16/7}
+.video-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(to top,rgba(8,7,5,.9),transparent)}
+.video-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
 .cs-campaign{padding:120px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);text-align:center;position:relative;z-index:1}
 .cs-campaign-eyebrow{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:16px}
 .cs-campaign-eyebrow::before,.cs-campaign-eyebrow::after{content:'';display:block;width:48px;height:1px;background:var(--amber)}
 .cs-campaign h2{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:.95;letter-spacing:-.02em;color:var(--text-muted)}
 .cs-campaign h2 em{font-style:italic;color:var(--amber-glow)}
-
-/* BODY SECTIONS */
 .cs-body{max-width:1200px;margin:0 auto;padding:0 60px}
 .cs-section{padding:100px 0;border-bottom:1px solid var(--border);position:relative;z-index:1}
 .cs-section:last-child{border-bottom:none}
@@ -80,23 +81,17 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-body-text{font-size:14px;line-height:1.95;color:var(--text-muted);margin-bottom:20px}
 .cs-body-text:last-child{margin-bottom:0}
 .cs-body-text strong{color:var(--text);font-weight:600}
-
-/* PILLARS */
 .cs-pillars{display:flex;flex-direction:column;margin-top:8px}
 .cs-pillar{padding:28px 0;border-bottom:1px solid var(--border);display:flex;gap:24px;align-items:flex-start}
 .cs-pillar:first-child{border-top:1px solid var(--border)}
 .cs-pillar-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--amber-dim);line-height:1;flex-shrink:0;width:40px}
 .cs-pillar h4{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--text);margin-bottom:7px}
 .cs-pillar p{font-size:13px;line-height:1.8;color:var(--text-muted)}
-
-/* VISUAL LANGUAGE */
 .cs-vl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);margin-top:8px}
-.cs-vl-item{background:var(--black);padding:28px 28px;transition:background .3s}
+.cs-vl-item{background:var(--black);padding:28px;transition:background .3s}
 .cs-vl-item:hover{background:var(--surface)}
 .cs-vl-item h4{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--text);margin-bottom:8px}
 .cs-vl-item p{font-size:12px;line-height:1.75;color:var(--text-muted)}
-
-/* METRICS */
 .cs-metrics{margin-top:8px;border:1px solid var(--border);overflow:hidden}
 .cs-metrics-header{display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--surface);border-bottom:1px solid var(--border)}
 .cs-metrics-header span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);padding:16px 24px}
@@ -107,21 +102,6 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .cs-metrics-cell.metric-name{color:var(--text);font-weight:600;font-size:13px}
 .cs-metrics-cell.metric-proj{color:var(--amber);font-weight:700;font-family:'Cormorant Garamond',serif;font-size:18px}
 .cs-metrics-note{font-size:11px;color:var(--text-faint);line-height:1.7;margin-top:20px;padding:16px 20px;border:1px solid var(--border);font-style:italic}
-
-/* VIDEO SECTION */
-.cs-videos{padding:0 60px;position:relative;z-index:1}
-.cs-videos-header{padding:60px 0 32px;border-top:1px solid var(--border)}
-.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.video-item{position:relative;background:var(--surface);overflow:hidden}
-.video-item video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
-.video-item-hero{grid-column:1/-1}
-.video-item-hero video{aspect-ratio:16/7}
-.video-item-full{grid-column:1/-1}
-.video-item-full video{aspect-ratio:16/7}
-.video-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(to top,rgba(8,7,5,.9),transparent);display:flex;align-items:center;justify-content:space-between}
-.video-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
-
-/* CAMPAIGN GALLERY */
 .cs-gallery{padding:0 60px;position:relative;z-index:1}
 .cs-gallery-header{padding:60px 0 32px;border-top:1px solid var(--border)}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
@@ -134,8 +114,6 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .gallery-item-full img{aspect-ratio:16/7}
 .gallery-caption{position:absolute;bottom:0;left:0;right:0;padding:14px 18px;background:linear-gradient(to top,rgba(8,7,5,.88),transparent);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);opacity:0;transition:opacity .3s}
 .gallery-item:hover .gallery-caption{opacity:1}
-
-/* CTA */
 .cs-cta{padding:120px 60px;text-align:center;position:relative;z-index:1}
 .cs-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4vw,62px);font-weight:300;line-height:1.08;margin-bottom:16px}
 .cs-cta h2 em{font-style:italic;color:var(--amber)}
@@ -147,19 +125,16 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .btn-primary span{position:relative;z-index:1}
 .btn-secondary{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .3s}
 .btn-secondary:hover{color:var(--amber)}
-
 footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;position:relative;z-index:1;background:var(--surface)}
 .f-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-dim)}
 .f-copy{font-size:11px;letter-spacing:.08em;color:var(--text-faint)}
 .f-links{display:flex;gap:28px;list-style:none}
 .f-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .3s}
 .f-links a:hover{color:var(--amber)}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.12s}.d2{transition-delay:.22s}.d3{transition-delay:.32s}
-
 @media(max-width:1024px){
 nav{padding:24px 40px}nav.scrolled{padding:18px 40px}
 .cs-hero{padding:140px 40px 60px}
@@ -194,18 +169,16 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
 </style>
 </head>
 <body>
-
 <canvas id="starfield"></canvas>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">Elarith</a>
   <a href="index.html#work" class="nav-back">← All Work</a>
   <a href="index.html#contact" class="nav-cta">Start a Project</a>
 </nav>
 
-<!-- HERO TEXT -->
+<!-- 1. HERO TEXT -->
 <section class="cs-hero">
   <div class="cs-hero-glow"></div>
   <div class="hl top"></div>
@@ -236,7 +209,7 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
   </div>
 </section>
 
-<!-- HERO IMAGE + 3-STILL GRID -->
+<!-- 2. HERO IMAGE + 3-STILL GRID -->
 <div class="cs-renders">
   <div class="render-hero reveal">
     <img src="veld-hero.png" alt="VELD Meridian — Hero">
@@ -257,83 +230,7 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
   </div>
 </div>
 
-<!-- CAMPAIGN LINE -->
-<div class="cs-campaign reveal">
-  <div class="cs-campaign-eyebrow">Campaign Line</div>
-  <h2><em>Carried,</em><br>not collected.</h2>
-</div>
-
-<!-- BODY COPY -->
-<div class="cs-body">
-
-  <div class="cs-section reveal">
-    <div class="cs-section-grid">
-      <div>
-        <div class="cs-section-label">The Brand</div>
-        <div class="cs-section-num">01</div>
-      </div>
-      <div>
-        <h2 class="cs-section-title">VELD — Built to be the <em>last flashlight</em> you ever buy.</h2>
-        <p class="cs-body-text">VELD is a veteran-founded EDC lighting company based in the American Southwest. Their flagship product, the <strong>Meridian</strong>, is a compact 1,200-lumen flashlight machined from aerospace-grade aluminum — available in matte OD green and raw titanium. Priced at $189.</p>
-        <p class="cs-body-text">No unnecessary features. No collector editions. No lifestyle cosplay. Just a light that works when nothing else does — and looks like it means it.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-grid">
-      <div>
-        <div class="cs-section-label">The Brief</div>
-        <div class="cs-section-num">02</div>
-      </div>
-      <div>
-        <h2 class="cs-section-title">A saturated market.<br><em>An audience that sees through it.</em></h2>
-        <p class="cs-body-text">The EDC flashlight market competes almost entirely on specs — lumens, beam distance, runtime, UI complexity. The result is advertising that looks and sounds identical regardless of brand. For most audiences, this is fine. For VELD's audience, it's a red flag.</p>
-        <p class="cs-body-text"><strong>Post-9/11 veterans, active duty personnel, and serious EDC carriers have the highest BS detection of any consumer group.</strong> They carry what they trust. They ignore what feels performed. Generic product-on-white renders and tactical-cosplay imagery doesn't just fail to land — it actively signals inauthenticity.</p>
-        <p class="cs-body-text">VELD's product is exceptional. Their creative wasn't. The ask: build a campaign that earns trust before it asks for attention.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-grid">
-      <div>
-        <div class="cs-section-label">The Strategy</div>
-        <div class="cs-section-num">03</div>
-      </div>
-      <div>
-        <h2 class="cs-section-title"><em>Hypothesis:</em> identity resonance outperforms spec-led creative 3–5× in this vertical.</h2>
-        <p class="cs-body-text">Imagery that reflects how this community actually lives — not how brands imagine they live — produces dramatically higher thumb-stop and save rates on paid social.</p>
-        <div class="cs-pillars">
-          <div class="cs-pillar">
-            <div class="cs-pillar-num">01</div>
-            <div>
-              <h4>Show the Life, Not the Product</h4>
-              <p>The Meridian appears in context — truck bed at 0500, hands checking a roofline, kit laid out before a range day. The flashlight is present, not posed. The community recognizes their own life reflected back at them.</p>
-            </div>
-          </div>
-          <div class="cs-pillar">
-            <div class="cs-pillar-num">02</div>
-            <div>
-              <h4>Zero Cosplay</h4>
-              <p>No tactical vests on models who've never served. No forced grimaces. No American flags as props. The environments are mundane and real — a garage, a trail at last light, a kitchen counter at 0300. VELD trusts the product to carry the weight.</p>
-            </div>
-          </div>
-          <div class="cs-pillar">
-            <div class="cs-pillar-num">03</div>
-            <div>
-              <h4>Copy That Respects Intelligence</h4>
-              <p>Sparse. Terse. No hyperbole. "1,200 lumens. Titanium. Yours for life." The audience knows what they need to know. The ad doesn't explain itself.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- VIDEO SECTION -->
+<!-- 3. VIDEO SECTION -->
 <div class="cs-videos">
   <div class="cs-videos-header reveal">
     <div class="cs-section-label">Campaign Video</div>
@@ -374,7 +271,78 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
   </div>
 </div>
 
+<!-- 4. CAMPAIGN LINE -->
+<div class="cs-campaign reveal">
+  <div class="cs-campaign-eyebrow">Campaign Line</div>
+  <h2><em>Carried,</em><br>not collected.</h2>
+</div>
+
+<!-- 5. CAMPAIGN BREAKDOWN -->
 <div class="cs-body">
+  <div class="cs-section reveal">
+    <div class="cs-section-grid">
+      <div>
+        <div class="cs-section-label">The Brand</div>
+        <div class="cs-section-num">01</div>
+      </div>
+      <div>
+        <h2 class="cs-section-title">VELD — Built to be the <em>last flashlight</em> you ever buy.</h2>
+        <p class="cs-body-text">VELD is a veteran-founded EDC lighting company based in the American Southwest. Their flagship product, the <strong>Meridian</strong>, is a compact 1,200-lumen flashlight machined from aerospace-grade aluminum — available in matte OD green and raw titanium. Priced at $189.</p>
+        <p class="cs-body-text">No unnecessary features. No collector editions. No lifestyle cosplay. Just a light that works when nothing else does — and looks like it means it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-grid">
+      <div>
+        <div class="cs-section-label">The Brief</div>
+        <div class="cs-section-num">02</div>
+      </div>
+      <div>
+        <h2 class="cs-section-title">A saturated market.<br><em>An audience that sees through it.</em></h2>
+        <p class="cs-body-text">The EDC flashlight market competes almost entirely on specs — lumens, beam distance, runtime, UI complexity. The result is advertising that looks and sounds identical regardless of brand. For most audiences, this is fine. For VELD's audience, it's a red flag.</p>
+        <p class="cs-body-text"><strong>Post-9/11 veterans, active duty personnel, and serious EDC carriers have the highest BS detection of any consumer group.</strong> They carry what they trust. They ignore what feels performed. Generic product-on-white renders and tactical-cosplay imagery doesn't just fail to land — it actively signals inauthenticity.</p>
+        <p class="cs-body-text">VELD's product is exceptional. Their creative wasn't. The ask: build a campaign that earns trust before it asks for attention.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-grid">
+      <div>
+        <div class="cs-section-label">The Strategy</div>
+        <div class="cs-section-num">03</div>
+      </div>
+      <div>
+        <h2 class="cs-section-title"><em>Hypothesis:</em> identity resonance outperforms spec-led creative 3–5× in this vertical.</h2>
+        <p class="cs-body-text">Imagery that reflects how this community actually lives — not how brands imagine they live — produces dramatically higher thumb-stop and save rates on paid social. The data from adjacent verticals (tactical apparel, premium knife brands) supports this consistently.</p>
+        <div class="cs-pillars">
+          <div class="cs-pillar">
+            <div class="cs-pillar-num">01</div>
+            <div>
+              <h4>Show the Life, Not the Product</h4>
+              <p>The Meridian appears in context — truck bed at 0500, hands checking a roofline, kit laid out before a range day. The flashlight is present, not posed. The community recognizes their own life reflected back at them.</p>
+            </div>
+          </div>
+          <div class="cs-pillar">
+            <div class="cs-pillar-num">02</div>
+            <div>
+              <h4>Zero Cosplay</h4>
+              <p>No tactical vests on models who've never served. No forced grimaces. No American flags as props. The environments are mundane and real — a garage, a trail at last light, a kitchen counter at 0300. VELD trusts the product to carry the weight.</p>
+            </div>
+          </div>
+          <div class="cs-pillar">
+            <div class="cs-pillar-num">03</div>
+            <div>
+              <h4>Copy That Respects Intelligence</h4>
+              <p>Sparse. Terse. No hyperbole. "1,200 lumens. Titanium. Yours for life." The audience knows what they need to know. The ad doesn't explain itself.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="cs-section reveal">
     <div class="cs-section-grid">
@@ -445,10 +413,9 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- FULL CAMPAIGN ASSET GALLERY -->
+<!-- 6. FULL CAMPAIGN ASSET GALLERY -->
 <div class="cs-gallery">
   <div class="cs-gallery-header reveal">
     <div class="cs-section-label">Full Campaign Assets</div>
@@ -477,7 +444,7 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
   </div>
 </div>
 
-<!-- CTA -->
+<!-- 7. CTA -->
 <div class="cs-cta reveal">
   <div class="cs-section-label" style="justify-content:center;margin-bottom:24px">Work With Elarith</div>
   <h2>Is your brand<br><em>impossible to ignore?</em></h2>
@@ -506,7 +473,6 @@ function mkStars(){stars=[];var n=Math.floor(canvas.width*canvas.height/5500);fo
 function drawStars(t){sctx.clearRect(0,0,canvas.width,canvas.height);for(var i=0;i<stars.length;i++){var s=stars[i];var a=s.a*(.5+.5*Math.sin(t*s.s+s.p));sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,Math.PI*2);sctx.fillStyle='rgba(200,134,26,'+a+')';sctx.fill();}requestAnimationFrame(function(ts){drawStars(ts*.001);});}
 resize();mkStars();drawStars(0);
 window.addEventListener('resize',function(){resize();mkStars();});
-
 var cur=document.getElementById('cursor');
 var cring=document.getElementById('cursorRing');
 var mx=0,my=0,crx=0,cry=0;

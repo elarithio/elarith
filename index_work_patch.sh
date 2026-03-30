@@ -1,0 +1,22 @@
+#!/bin/bash
+cd ~/elarith
+
+# 1. Add Work to desktop nav (after Services, before Process)
+sed -i '' 's|<li><a href="#process">Process</a></li>|<li><a href="#work">Work</a></li><li><a href="#process">Process</a></li>|' index.html
+
+# 2. Add Work to mobile menu (after Services, before Process)  
+sed -i '' 's|<a href="#process" onclick="closeMobile()">Process</a>|<a href="#work" onclick="closeMobile()">Work</a><a href="#process" onclick="closeMobile()">Process</a>|' index.html
+
+# 3. Add Work section CSS
+sed -i '' 's|.f-logo{|.work-section{padding:160px 60px;position:relative;z-index:1;border-top:1px solid var(--border)}.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin-top:80px}.work-card{background:var(--black);padding:52px 44px;position:relative;overflow:hidden;transition:background .4s;text-decoration:none;display:block;color:var(--text)}.work-card::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber-dim),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .5s}.work-card:hover{background:var(--surface)}.work-card:hover::before{transform:scaleX(1)}.work-card-tag{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:24px;display:flex;align-items:center;gap:10px}.work-card-tag::before{content:"";display:block;width:16px;height:1px;background:var(--amber)}.work-card-title{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:300;line-height:1.2;margin-bottom:14px;color:var(--text)}.work-card-desc{font-size:13px;line-height:1.8;color:var(--text-muted);margin-bottom:32px}.work-card-cta{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-dim);transition:color .3s}.work-card:hover .work-card-cta{color:var(--amber)}.work-card-coming{opacity:.45;pointer-events:none}.f-logo{|' index.html
+
+# 4. Add Work section HTML before the process section
+sed -i '' 's|<section class="process" id="process">|<section class="work-section" id="work"><span class="sec-num">05</span><div class="sec-header reveal"><div><div class="sec-label">Our Work</div><h2 class="sec-title">Campaigns that <em>earn attention.</em></h2></div></div><p style="font-size:14px;color:var(--text-muted);margin-bottom:64px;max-width:560px">Spec campaigns demonstrating Elarith'"'"'s approach across all three verticals.</p><div class="work-grid"><a href="veld.html" class="work-card reveal"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">VELD Meridian — Carried, Not Collected</h3><p class="work-card-desc">A premium EDC flashlight brand built for operators who carry what they trust. Identity-first campaign targeting post-9/11 veterans and serious EDC carriers.</p><div class="card-tags" style="margin-bottom:32px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></a><a href="kern.html" class="work-card reveal d1"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">KERN Traverse — Quiet. Ready. Yours.</h3><p class="work-card-desc">A premium EDC hip pack built for concealed carriers who live prepared without performing it. Identity-first campaign targeting serious EDC carriers and off-duty law enforcement.</p><div class="card-tags" style="margin-bottom:32px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></a><div class="work-card work-card-coming reveal d2"><div class="work-card-tag">Music Hardware</div><h3 class="work-card-title">Case Study — Coming Soon</h3><p class="work-card-desc">A boutique synthesizer brand campaign targeting the obsessive, gear-driven communities that define music culture.</p><div class="card-tags" style="margin-bottom:32px"><span class="tag">Hybrid Production</span><span class="tag">Ad Campaign</span></div><div class="work-card-cta">In Development →</div></div></div></section><section class="process" id="process">|' index.html
+
+# 5. Update process section number from 05 to 06
+sed -i '' '/id="process"/{n;s|05|06|}' index.html
+
+echo "Done! Committing..."
+git add index.html
+git commit -m "Add Work section with VELD and KERN cards"
+git push
