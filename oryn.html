@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORYN Solstice × Elarith — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080705;
+      --text: #e8dcc8;
+      --text-muted: #8a7a62;
+      --gold: #c8861a;
+      --gold-bright: #f0b84a;
+      --border: rgba(200,134,26,0.10);
+      --num: #3a3228;
+      --slot-bg: #11100b;
+      --container: 1600px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* ── Cursor ── */
+    .cursor {
+      position: fixed; width: 6px; height: 6px;
+      background: var(--gold-bright); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(240,184,74,0.4); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(8,7,5,0.95) 0%, rgba(8,7,5,0) 100%);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.1em; }
+    .nav-back { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-cta {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg); background: var(--gold-bright);
+      padding: 10px 22px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--text); }
+
+    /* ── Container ── */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 60px; }
+
+    /* ── Hero ── */
+    .cs-hero {
+      padding: 160px 60px 80px;
+      min-height: 680px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-hero-glow {
+      position: absolute; top: 0; right: 0; width: 600px; height: 600px;
+      background: radial-gradient(ellipse at top right, rgba(200,134,26,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hl { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.3; }
+    .vl { position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); opacity: 0.12; }
+    .vl.right { right: 60px; left: auto; }
+
+    .cs-eyebrow {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 48px;
+    }
+    .cs-eyebrow-tag {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .cs-eyebrow-div { width: 32px; height: 1px; background: var(--border); }
+    .cs-eyebrow-type {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .cs-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 110px; font-weight: 300; line-height: 0.92;
+      color: var(--text); letter-spacing: -0.02em;
+      margin-bottom: 60px;
+    }
+    .cs-hero h1 em { color: var(--gold-bright); font-style: italic; }
+
+    .cs-hero-meta {
+      display: flex; gap: 60px; flex-wrap: wrap;
+    }
+    .cs-meta-item {}
+    .cs-meta-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+    }
+    .cs-meta-value {
+      font-size: 14px; color: var(--text-muted);
+    }
+
+    /* ── Renders / Image Grid ── */
+    .cs-renders { padding: 0; border-bottom: 1px solid var(--border); }
+    .render-hero {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--slot-bg);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .render-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .render-hero-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      color: var(--text-muted);
+    }
+    .render-hero-placeholder .icon { font-size: 32px; opacity: 0.3; }
+    .render-hero-placeholder span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.4; }
+
+    .render-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .render-slot {
+      aspect-ratio: 4/3; background: var(--slot-bg);
+      position: relative; overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .render-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .render-label {
+      position: absolute; bottom: 16px; left: 20px;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(232,220,200,0.5);
+    }
+    .d1, .d2 {
+      position: absolute; top: 16px; right: 16px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); opacity: 0.4;
+    }
+    .d2 { top: 28px; opacity: 0.2; }
+
+    /* ── Campaign line ── */
+    .cs-campaign {
+      padding: 120px 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-campaign-eyebrow {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 32px;
+    }
+    .cs-campaign h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 96px; font-weight: 300; line-height: 1;
+      color: var(--text-muted); letter-spacing: -0.02em;
+    }
+    .cs-campaign h2 em { color: var(--gold-bright); font-style: italic; }
+
+    /* ── Sections ── */
+    .cs-section {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-section-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 48px;
+      padding: 0 60px;
+    }
+    .cs-section-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 80px;
+      padding: 0 60px;
+    }
+    .cs-section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px; font-weight: 300;
+      color: var(--num); line-height: 1;
+      padding-top: 8px;
+    }
+    .cs-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300; line-height: 1.05;
+      color: var(--text-muted); letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .cs-section-title em { color: var(--gold-bright); font-style: italic; }
+    .cs-body-text {
+      font-size: 16px; line-height: 1.75; color: var(--text-muted);
+      max-width: 680px;
+    }
+    .cs-body-text p { margin-bottom: 20px; }
+    .cs-body-text p:last-child { margin-bottom: 0; }
+    .cs-body-text strong { color: var(--text); font-weight: 600; }
+
+    /* ── Pillars ── */
+    .cs-pillars { margin-top: 48px; }
+    .cs-pillar {
+      display: flex; gap: 32px; align-items: flex-start;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+    .cs-pillar:last-child { border-bottom: 1px solid var(--border); }
+    .cs-pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 300;
+      color: var(--num); flex-shrink: 0; width: 40px; line-height: 1;
+    }
+    .cs-pillar h4 {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .cs-pillar p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
+
+    /* ── Visual Language grid ── */
+    .cs-vl-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 48px;
+    }
+    .cs-vl-item {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      padding-right: 40px;
+    }
+    .cs-vl-item:nth-child(even) { padding-right: 0; padding-left: 40px; border-left: 1px solid var(--border); }
+    .cs-vl-item h4 {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .cs-vl-item p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
+
+    /* ── Metrics ── */
+    .cs-metrics { margin-top: 48px; }
+    .cs-metrics-header {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .cs-metrics-header div {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .cs-metrics-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      padding: 18px 0; border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .cs-metrics-cell { font-size: 14px; color: var(--text-muted); }
+    .metric-name { color: var(--text); font-weight: 600; }
+    .metric-proj { color: var(--gold-bright); font-weight: 600; }
+    .cs-metrics-note {
+      font-size: 12px; color: var(--num); margin-top: 20px;
+      line-height: 1.6; font-style: italic;
+    }
+
+    /* ── Gallery ── */
+    .cs-gallery { padding: 100px 0 0; border-bottom: 1px solid var(--border); }
+    .cs-gallery-header {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 48px; padding: 0 60px;
+    }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3; background: var(--slot-bg);
+      position: relative; overflow: hidden;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-label {
+      position: absolute; bottom: 16px; left: 20px;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(232,220,200,0.5);
+    }
+
+    /* ── CTA ── */
+    .cs-cta {
+      padding: 120px 60px;
+      text-align: center;
+    }
+    .cs-cta-eyebrow {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 32px;
+    }
+    .cs-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px; font-weight: 300; line-height: 1.05;
+      color: var(--text-muted); letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+    .cs-cta h2 em { color: var(--gold-bright); font-style: italic; }
+    .cs-cta-links { display: flex; gap: 32px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .cta-primary {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg); background: var(--gold-bright);
+      padding: 14px 32px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-primary:hover { background: var(--text); }
+    .cta-secondary {
+      font-size: 13px; color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cta-secondary:hover { color: var(--text); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 44px 60px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-brand { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; color: var(--text); }
+    .footer-copy { font-size: 12px; color: var(--num); }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── Reveal animation ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── Product photo in render slots ── */
+    .oryn-product-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #0d0c09;
+      position: relative;
+    }
+    .oryn-product-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(200,134,26,0.04) 0%, transparent 70%);
+    }
+    .slot-icon {
+      font-size: 48px; opacity: 0.07;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.2em; color: var(--gold);
+    }
+
+    /* Environment scene indicators */
+    .scene-tag {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(200,134,26,0.5); font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      nav { padding: 24px 32px; }
+      .cs-hero { padding: 120px 32px 60px; }
+      .cs-hero h1 { font-size: 72px; }
+      .cs-section-grid { grid-template-columns: 1fr; gap: 32px; padding: 0 32px; }
+      .cs-section-label { padding: 0 32px; }
+      .cs-campaign { padding: 80px 32px; }
+      .cs-campaign h2 { font-size: 60px; }
+      .cs-gallery-header { padding: 0 32px; }
+      .render-grid, .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .cs-vl-grid { grid-template-columns: 1fr; }
+      .cs-vl-item:nth-child(even) { padding-left: 0; border-left: none; }
+      .cs-cta { padding: 80px 32px; }
+      footer { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Nav -->
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">Elarith</a>
+    <a href="index.html#work" class="nav-back">← All Work</a>
+    <a href="index.html#contact" class="nav-cta">Start a Project</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="cs-hero">
+    <div class="hl"></div>
+    <div class="vl right"></div>
+    <div class="cs-hero-glow"></div>
+
+    <div class="cs-eyebrow reveal">
+      <span class="cs-eyebrow-tag">Military Lifestyle</span>
+      <span class="cs-eyebrow-div"></span>
+      <span class="cs-eyebrow-type">Spec Campaign · Precision Hardware · Paid Social</span>
+    </div>
+
+    <h1 class="reveal">ORYN <em>Solstice</em></h1>
+
+    <div class="cs-hero-meta reveal">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Brand</div>
+        <div class="cs-meta-value">ORYN — Precision Optic Systems</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Campaign Line</div>
+        <div class="cs-meta-value">Set Once. Trust It.</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Deliverables</div>
+        <div class="cs-meta-value">4 Hero Stills · 2 Video Loops · 4 Social Variants</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Target</div>
+        <div class="cs-meta-value">Competition Shooters · Active Duty / SOF · Off-Duty LEO · Serious Civilian Shooters</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Render -->
+  <div class="cs-renders">
+    <div class="render-hero reveal">
+      <div class="oryn-product-bg">
+        <span class="slot-icon">◈</span>
+        <span class="render-label">Hero Render — Coming</span>
+      </div>
+    </div>
+    <div class="render-grid">
+      <div class="render-slot reveal">
+        <div class="oryn-product-bg">
+          <span class="slot-icon">◈</span>
+        </div>
+        <div class="scene-tag">Pre-Dawn</div>
+        <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="render-label">Still 01 — Pre-Dawn Range</div>
+      </div>
+      <div class="render-slot reveal">
+        <div class="oryn-product-bg">
+          <span class="slot-icon">◈</span>
+        </div>
+        <div class="scene-tag">Bench</div>
+        <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="render-label">Still 02 — The Torque</div>
+      </div>
+      <div class="render-slot reveal">
+        <div class="oryn-product-bg">
+          <span class="slot-icon">◈</span>
+        </div>
+        <div class="scene-tag">Steel</div>
+        <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="render-label">Still 03 — Last Round</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign Line -->
+  <div class="cs-campaign reveal">
+    <div class="cs-campaign-eyebrow">Campaign Line</div>
+    <h2><em>Set Once.</em><br>Trust It.</h2>
+  </div>
+
+  <!-- Section 01: The Brand -->
+  <section class="cs-section">
+    <div class="cs-section-label reveal">The Brand</div>
+    <div class="cs-section-grid">
+      <div class="cs-section-num reveal">01</div>
+      <div>
+        <h2 class="cs-section-title reveal">ORYN — Built for the shot that <em>can't miss.</em></h2>
+        <div class="cs-body-text reveal">
+          <p>ORYN is a veteran-founded precision optics mounting company based in the American Southwest. Their flagship product, the <strong>Solstice</strong>, is a modular elevated micro pattern optic mount machined from 7075-T6 aerospace aluminum — available in Matte Black and FDE Type 3 hardcoat anodize. Priced at $269.</p>
+          <p>Dual low-profile stainless clamps. 2.5" optical centerline. Reversible for forward or rearward lean. Compatible with OMM SHORTBOARD and LONGBOARD attachments. Torque spec: 35 in/lbs. Designed for NVG passive aiming, heads-up shooting, and ease of use with PPE — helmets, gas masks, body armor. No compromises for any of it.</p>
+          <p>No branding noise. Subdued engraved markings only. The mount doesn't announce itself. Neither does the person running it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 02: The Brief -->
+  <section class="cs-section">
+    <div class="cs-section-label reveal">The Brief</div>
+    <div class="cs-section-grid">
+      <div class="cs-section-num reveal">02</div>
+      <div>
+        <h2 class="cs-section-title reveal">A precision product. <em>Generic creative.</em></h2>
+        <div class="cs-body-text reveal">
+          <p>The optic mount market is dominated by spec-sheet advertising — height-over-bore numbers, weight claims, material callouts. Every brand shouts the same things. The result is creative that is technically accurate and completely forgettable.</p>
+          <p><strong>The shooter who chooses a precision mount doesn't need to be educated. They need to be recognized.</strong> Competition PRS shooters, SOF operators, off-duty law enforcement, and serious civilian shooters — this audience has already done the research. They know what 7075-T6 means. They know what Type 3 hardcoat means. The ad that explains it to them has already failed.</p>
+          <p>ORYN's product commands a premium. Their creative wasn't earning it. The ask: build a campaign that signals craftsmanship and earns trust at a glance — before a single spec is read.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 03: The Strategy -->
+  <section class="cs-section">
+    <div class="cs-section-label reveal">The Strategy</div>
+    <div class="cs-section-grid">
+      <div class="cs-section-num reveal">03</div>
+      <div>
+        <h2 class="cs-section-title reveal"><em>Hypothesis:</em> engineering credibility + operator recognition converts 4–6× over spec-led creative in this vertical.</h2>
+        <div class="cs-body-text reveal">
+          <p>This audience responds to creative that reflects the precision they bring to their own craft. Imagery that treats the mount the way they treat their rifle — with intention, with care, with the understanding that every component matters — generates dramatically higher engagement than product-on-white renders and torque callouts.</p>
+        </div>
+        <div class="cs-pillars reveal">
+          <div class="cs-pillar">
+            <div class="cs-pillar-num">01</div>
+            <div>
+              <h4>Show the Ritual, Not the Product</h4>
+              <p>The Solstice appears in the moments this audience lives — torquing down at a bench before first light, calling a hit at 600 yards, laying out kit the night before a match. The mount is always present. It is never the subject. The shooter is.</p>
+            </div>
+          </div>
+          <div class="cs-pillar">
+            <div class="cs-pillar-num">02</div>
+            <div>
+              <h4>Let the Machining Speak</h4>
+              <p>Close frames on the 7075-T6 relief cuts. The FDE anodize catching flat light. The stainless clamp face against a worn rail. No narration needed. The material quality communicates directly to a community that knows what they're looking at.</p>
+            </div>
+          </div>
+          <div class="cs-pillar">
+            <div class="cs-pillar-num">03</div>
+            <div>
+              <h4>Four Words. Full Stop.</h4>
+              <p>"Set Once. Trust It." No lumen counts, no height-over-bore tables, no brand story. The audience that understands what it means to zero a rifle once and never question it again — that audience already knows exactly what this campaign is saying.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 04: Visual Language -->
+  <section class="cs-section">
+    <div class="cs-section-label reveal">Visual Language</div>
+    <div class="cs-section-grid">
+      <div class="cs-section-num reveal">04</div>
+      <div>
+        <h2 class="cs-section-title reveal">Industrial light. <em>Purposeful hands.</em></h2>
+        <div class="cs-body-text reveal">
+          <p>The visual direction mirrors the product's own ethos: nothing decorative, nothing unnecessary. Every frame is technically composed. Every element earns its place.</p>
+        </div>
+        <div class="cs-vl-grid reveal">
+          <div class="cs-vl-item">
+            <h4>Lighting</h4>
+            <p>Flat pre-dawn tungsten against cold blue. No directional studio light — only practical sources. The FDE anodize reads warm against cool shadow. The machining detail does the work.</p>
+          </div>
+          <div class="cs-vl-item">
+            <h4>Texture</h4>
+            <p>7075 relief cuts. Stainless clamp faces. Worn rail surfaces. Film grain overlay at 30% — present but not performed. Real equipment, real use, real hands.</p>
+          </div>
+          <div class="cs-vl-item">
+            <h4>Composition</h4>
+            <p>Mount always in context: on a rifle, in hands, at a bench. Never isolated. Never floating. The Solstice exists within the shooter's world — not outside it.</p>
+          </div>
+          <div class="cs-vl-item">
+            <h4>Copy Treatment</h4>
+            <p>Four words. Syne, tight tracking, minimal weight. Set left, lower third. The silence in the frame is part of the message. No color. No emphasis. No punctuation beyond the period.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 05: Metrics -->
+  <section class="cs-section">
+    <div class="cs-section-label reveal">The Metrics Model</div>
+    <div class="cs-section-grid">
+      <div class="cs-section-num reveal">05</div>
+      <div>
+        <h2 class="cs-section-title reveal">Projected performance vs. <em>industry benchmarks.</em></h2>
+        <div class="cs-body-text reveal">
+          <p>Modeled against Meta creative benchmarks Q4 2025 and comparable precision + identity-driven campaigns in adjacent verticals — PRS/competition gear, premium rifle components, and tactical accessories with a serious shooter audience.</p>
+        </div>
+        <div class="cs-metrics reveal">
+          <div class="cs-metrics-header">
+            <div>Metric</div>
+            <div>Benchmark</div>
+            <div>ORYN Projection</div>
+          </div>
+          <div class="cs-metrics-row">
+            <div class="cs-metrics-cell metric-name">Thumb-Stop Rate</div>
+            <div class="cs-metrics-cell">2–4%</div>
+            <div class="cs-metrics-cell metric-proj">8–11%</div>
+          </div>
+          <div class="cs-metrics-row">
+            <div class="cs-metrics-cell metric-name">Save Rate (Instagram)</div>
+            <div class="cs-metrics-cell">0.5%</div>
+            <div class="cs-metrics-cell metric-proj">2.4%</div>
+          </div>
+          <div class="cs-metrics-row">
+            <div class="cs-metrics-cell metric-name">CPC (Meta, interest targeted)</div>
+            <div class="cs-metrics-cell">$1.80</div>
+            <div class="cs-metrics-cell metric-proj">$0.88</div>
+          </div>
+          <div class="cs-metrics-row">
+            <div class="cs-metrics-cell metric-name">ROAS (30-day)</div>
+            <div class="cs-metrics-cell">1.8×</div>
+            <div class="cs-metrics-cell metric-proj">3.6×</div>
+          </div>
+          <div class="cs-metrics-note">
+            Projections are modeled estimates based on comparable identity-driven product campaigns in adjacent verticals. Actual performance will vary. Elarith uses iterative creative testing to converge on peak efficiency within the first 30 days of any campaign.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <div class="cs-gallery">
+    <div class="cs-gallery-header reveal">Full Campaign Assets</div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <div class="oryn-product-bg"><span class="slot-icon">◈</span></div>
+        <div class="gallery-label">Hero — Pre-Dawn Range</div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="oryn-product-bg"><span class="slot-icon">◈</span></div>
+        <div class="gallery-label">The Torque — Bench</div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="oryn-product-bg"><span class="slot-icon">◈</span></div>
+        <div class="gallery-label">Last Round — Steel</div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="oryn-product-bg"><span class="slot-icon">◈</span></div>
+        <div class="gallery-label">Kit Lay — Night Before</div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="oryn-product-bg"><span class="slot-icon">◈</span></div>
+        <div class="gallery-label">Detail — Relief Cuts</div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="oryn-product-bg"><span class="slot-icon">◈</span></div>
+        <div class="gallery-label">Hero — Alternate Cut</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cs-cta">
+    <div class="cs-cta-eyebrow reveal">Work With Elarith</div>
+    <h2 class="reveal">Is your brand <em>impossible to ignore?</em></h2>
+    <div class="cs-cta-links reveal">
+      <a href="index.html#contact" class="cta-primary">Start a Project</a>
+      <a href="index.html#work" class="cta-secondary">← Back to Work</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-brand">Elarith</span>
+    <span class="footer-copy">© 2026 Elarith. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/weareelarith">Instagram</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => io.observe(r));
+
+    // Nav shrink on scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.style.background = 'rgba(8,7,5,0.97)';
+        nav.style.padding = '18px 60px';
+        nav.style.backdropFilter = 'blur(8px)';
+      } else {
+        nav.style.background = 'linear-gradient(to bottom, rgba(8,7,5,0.95) 0%, rgba(8,7,5,0) 100%)';
+        nav.style.padding = '28px 60px';
+        nav.style.backdropFilter = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
