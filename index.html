@@ -590,15 +590,15 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     </div>
   </div>
   <div class="reveal d2">
-    <form class="cf" id="contactForm">
+    <form class="cf" id="contactForm" action="https://formspree.io/f/xpwzgkdv" method="POST">
       <div class="form-row">
-        <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name" required></div>
-        <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com" required></div>
+        <div class="fg"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" required></div>
       </div>
-      <div class="fg"><label>Brand / Company</label><input type="text" placeholder="Brand name" required></div>
+      <div class="fg"><label>Brand / Company</label><input type="text" name="brand" placeholder="Brand name" required></div>
       <div class="fg">
         <label>Vertical</label>
-        <select required>
+        <select name="vertical" required>
           <option value="" disabled selected>Select your vertical</option>
           <option>Outdoor Accessory Brand</option>
           <option>Defense Tech Startup</option>
@@ -606,7 +606,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
           <option>Other Physical Brand</option>
         </select>
       </div>
-      <div class="fg"><label>Tell us about your project</label><textarea rows="5" placeholder="What are you working on? What's the challenge?"></textarea></div>
+      <div class="fg"><label>Tell us about your project</label><textarea name="message" rows="5" placeholder="What are you working on? What's the challenge?"></textarea></div>
       <button type="submit" class="form-btn">Send Message</button>
       <div class="form-success" id="formSuccess">✦ &nbsp; Message received. We'll be in touch within 24 hours at hello@elarith.io</div>
     </form>
@@ -690,8 +690,14 @@ for(var i=0;i<countEls.length;i++)cObs.observe(countEls[i]);
 
 document.getElementById('contactForm').addEventListener('submit',function(e){
   e.preventDefault();
-  document.getElementById('formSuccess').style.display='block';
-  this.reset();
+  var form=this;
+  var data=new FormData(form);
+  fetch('https://formspree.io/f/xpwzgkdv',{method:'POST',body:data,headers:{Accept:'application/json'}})
+    .then(function(r){
+      if(r.ok){document.getElementById('formSuccess').style.display='block';form.reset();}
+      else{alert('Problem sending. Please email hello@elarith.io directly.');}
+    })
+    .catch(function(){alert('Problem sending. Please email hello@elarith.io directly.');});
 });
 </script>
 </body>

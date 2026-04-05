@@ -175,7 +175,7 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">Elarith</a>
   <a href="index.html#work" class="nav-back">← All Work</a>
-  <a href="index.html#contact" class="nav-cta">Start a Project</a>
+  <a href="index.html#contact" class="nav-cta">Book a Call</a>
 </nav>
 
 <!-- 1. HERO TEXT -->
@@ -452,7 +452,7 @@ footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
   <h2>Is your brand<br><em>impossible to ignore?</em></h2>
   <p>Tell us about your product. We'll tell you exactly how we'd make it impossible to scroll past.</p>
   <div class="cs-cta-actions">
-    <a href="index.html#contact" class="btn-primary"><span>Start a Project</span></a>
+    <a href="index.html#contact" class="btn-primary"><span>Book a Call</span></a>
     <a href="index.html#work" class="btn-secondary">← Back to Work</a>
   </div>
 </div>
@@ -486,9 +486,21 @@ for(var i=0;i<hoverEls.length;i++){
   hoverEls[i].addEventListener('mouseleave',function(){cur.style.width='8px';cur.style.height='8px';cur.style.background='var(--amber)';cring.style.width='36px';cring.style.height='36px';});
 }
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
-var revEls=document.querySelectorAll('.reveal');
-var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
-for(var i=0;i<revEls.length;i++)obs.observe(revEls[i]);
+function initReveal(){
+  var revEls=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  for(var i=0;i<revEls.length;i++)obs.observe(revEls[i]);
+  var scrolled=false;
+  function onFirstScroll(){if(scrolled)return;scrolled=true;revEls.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight*0.95)el.classList.add('visible');});}
+  window.addEventListener('scroll',onFirstScroll,{passive:true});
+  window.addEventListener('load',function(){
+    revEls.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight*0.95)el.classList.add('visible');});
+    obs.disconnect();
+    var obs2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+    revEls.forEach(function(el){if(!el.classList.contains('visible'))obs2.observe(el);});
+  });
+}
+initReveal();
 </script>
 </body>
 </html>
