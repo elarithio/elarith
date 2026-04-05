@@ -428,4 +428,4 @@ for(var i=0;i<revEls.length;i++)obs.observe(revEls[i]);
 function countUp(el,target,dur){var start=null;dur=dur||1800;function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);var e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*target);if(p<1)requestAnimationFrame(step);else el.textContent=target;}requestAnimationFrame(step);}
 var cObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target,parseInt(e.target.dataset.target));cObs.unobserve(e.target);}});},{threshold:.5});
 var countEls=document.querySelectorAll('.count-up');
-for(var i=0;i<
+for(var i=0;i<<!-- redeploy -->
