@@ -81,6 +81,85 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .mq-item span{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--text-faint)}
 .mq-dot{width:3px;height:3px;background:var(--amber-dim);border-radius:50%;flex-shrink:0}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── PROOF NUMBERS ROW ── */
+.proof-row{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:40px 60px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:0;
+  background:var(--surface);
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+}
+.proof-row::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,rgba(200,134,26,.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.proof-item{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:0 40px;
+  position:relative;
+  text-align:center;
+}
+.proof-item+.proof-item::before{
+  content:'';
+  position:absolute;
+  left:0;top:10%;bottom:10%;
+  width:1px;
+  background:var(--border);
+}
+.proof-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,5vw,72px);
+  font-weight:300;
+  color:var(--amber);
+  line-height:1;
+  margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+.proof-label{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+}
+.proof-item.proof-status .proof-num{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(13px,1.6vw,18px);
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--amber-glow);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.proof-item.proof-status .proof-num::before{
+  content:'';
+  display:block;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--amber);
+  animation:pulse 2.4s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.7)}
+}
+
 .sec-num{font-size:10px;letter-spacing:.2em;color:var(--text-faint);position:absolute;top:80px;left:60px}
 .sec-label{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;display:flex;align-items:center;gap:12px}
 .sec-label::before{content:'';display:block;width:24px;height:1px;background:var(--amber)}
@@ -156,7 +235,26 @@ nav.scrolled{background:rgba(8,7,5,.96);padding:18px 60px;border-bottom:1px soli
 .form-btn:hover{background:var(--amber-glow)}
 .form-success{display:none;padding:20px 24px;border:1px solid var(--border-bright);background:var(--amber-faint);font-size:13px;color:var(--amber);line-height:1.6}
 footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;position:relative;z-index:1;background:var(--surface)}
-.work-section{padding:160px 60px;position:relative;z-index:1;border-top:1px solid var(--border)}.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin-top:80px}.work-card{background:var(--black);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;display:block;color:var(--text)}.work-card-img{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative}.work-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;filter:brightness(.75)}.work-card:hover .work-card-img img{transform:scale(1.04);filter:brightness(.9)}.work-card-img-placeholder{width:100%;aspect-ratio:16/9;background:var(--surface);display:flex;align-items:center;justify-content:center}.work-card-img-placeholder span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}.work-card-body{padding:36px 40px 44px;transition:background .4s}.work-card:hover .work-card-body{background:var(--surface)}.work-card::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber-dim),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .5s;z-index:1}.work-card:hover::before{transform:scaleX(1)}.work-card-tag{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:10px}.work-card-tag::before{content:"";display:block;width:16px;height:1px;background:var(--amber)}.work-card-title{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:300;line-height:1.2;margin-bottom:12px;color:var(--text)}.work-card-desc{font-size:12px;line-height:1.8;color:var(--text-muted);margin-bottom:24px}.work-card-cta{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-dim);transition:color .3s}.work-card:hover .work-card-cta{color:var(--amber)}.work-card-coming{opacity:.5;pointer-events:none}.f-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-dim)}
+.work-section{padding:160px 60px;position:relative;z-index:1;border-top:1px solid var(--border)}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin-top:80px}
+.work-card{background:var(--black);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;display:block;color:var(--text)}
+.work-card-img{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative}
+.work-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;filter:brightness(.75)}
+.work-card:hover .work-card-img img{transform:scale(1.04);filter:brightness(.9)}
+.work-card-img-placeholder{width:100%;aspect-ratio:16/9;background:var(--surface);display:flex;align-items:center;justify-content:center}
+.work-card-img-placeholder span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
+.work-card-body{padding:36px 40px 44px;transition:background .4s}
+.work-card:hover .work-card-body{background:var(--surface)}
+.work-card::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber-dim),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .5s;z-index:1}
+.work-card:hover::before{transform:scaleX(1)}
+.work-card-tag{font-size:10px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.work-card-tag::before{content:"";display:block;width:16px;height:1px;background:var(--amber)}
+.work-card-title{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:300;line-height:1.2;margin-bottom:12px;color:var(--text)}
+.work-card-desc{font-size:12px;line-height:1.8;color:var(--text-muted);margin-bottom:24px}
+.work-card-cta{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-dim);transition:color .3s}
+.work-card:hover .work-card-cta{color:var(--amber)}
+.work-card-coming{opacity:.5;pointer-events:none}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:var(--amber-dim)}
 .f-copy{font-size:11px;letter-spacing:.08em;color:var(--text-faint)}
 .f-links{display:flex;gap:28px;list-style:none}
 .f-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .3s}
@@ -184,6 +282,8 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   .contact{grid-template-columns:1fr;gap:64px;padding:100px 40px}
   .form-row{grid-template-columns:1fr}
   footer{padding:36px 40px;flex-direction:column;align-items:flex-start}
+  .proof-row{padding:32px 40px;gap:0}
+  .proof-item{padding:0 24px}
 }
 @media(max-width:640px){
   nav{padding:20px 24px}nav.scrolled{padding:16px 24px}
@@ -200,6 +300,10 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   .process{padding:80px 24px}.proc-steps{grid-template-columns:1fr;gap:40px}
   .contact{padding:80px 24px}
   footer{padding:32px 24px}.f-links{flex-wrap:wrap;gap:16px}
+  .proof-row{padding:28px 24px;flex-direction:column;gap:24px}
+  .proof-item{padding:16px 0;width:100%}
+  .proof-item+.proof-item::before{top:0;bottom:auto;left:10%;right:10%;width:auto;height:1px}
+  .proof-num{font-size:clamp(40px,12vw,60px)!important}
 }
 </style>
 </head>
@@ -212,8 +316,9 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#verticals" onclick="closeMobile()">Verticals</a>
   <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="#work" onclick="closeMobile()">Work</a><a href="#process" onclick="closeMobile()">Process</a>
-  <a href="#contact" class="mobile-cta-btn" onclick="closeMobile()">Start a Project</a>
+  <a href="#work" onclick="closeMobile()">Work</a>
+  <a href="#process" onclick="closeMobile()">Process</a>
+  <a href="#contact" class="mobile-cta-btn" onclick="closeMobile()">Book a Call</a>
 </div>
 
 <nav id="mainNav">
@@ -222,9 +327,10 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     <li><a href="#about">About</a></li>
     <li><a href="#verticals">Verticals</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#work">Work</a></li><li><a href="#process">Process</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Start a Project</a>
+  <a href="#contact" class="nav-cta">Book a Call</a>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -259,6 +365,22 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <div class="marquee-track">
     <div class="mq-item"><span>Defense Tech</span><div class="mq-dot"></div><span>Military Lifestyle</span><div class="mq-dot"></div><span>Ad Campaigns</span><div class="mq-dot"></div><span>Premium Renders</span><div class="mq-dot"></div><span>Physical Brands</span><div class="mq-dot"></div><span>Paid Social</span><div class="mq-dot"></div><span>Brand Identity</span><div class="mq-dot"></div></div>
     <div class="mq-item"><span>Defense Tech</span><div class="mq-dot"></div><span>Military Lifestyle</span><div class="mq-dot"></div><span>Ad Campaigns</span><div class="mq-dot"></div><span>Premium Renders</span><div class="mq-dot"></div><span>Physical Brands</span><div class="mq-dot"></div><span>Paid Social</span><div class="mq-dot"></div><span>Brand Identity</span><div class="mq-dot"></div></div>
+  </div>
+</div>
+
+<!-- PROOF NUMBERS ROW -->
+<div class="proof-row reveal">
+  <div class="proof-item">
+    <div class="proof-num">9</div>
+    <div class="proof-label">Campaigns</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num">3</div>
+    <div class="proof-label">Verticals</div>
+  </div>
+  <div class="proof-item proof-status">
+    <div class="proof-num">Now Accepting Work</div>
+    <div class="proof-label">New Clients Open</div>
   </div>
 </div>
 
@@ -305,8 +427,6 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </section>
 
-
-
 <section class="services" id="services">
   <span class="sec-num">04</span>
   <div class="sec-header reveal">
@@ -336,8 +456,118 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </section>
 
-<section class="work-section" id="work"><span class="sec-num">05</span><div class="sec-header reveal"><div><div class="sec-label">Our Work</div><h2 class="sec-title">Campaigns that <em>earn attention.</em></h2></div></div><p style="font-size:14px;color:var(--text-muted);margin-bottom:64px;max-width:560px">Spec campaigns demonstrating Elarith's approach across all three verticals.</p><div class="work-grid"><a href="veld.html" class="work-card reveal"><div class="work-card-img"><img src="veld-hero.png" alt="VELD Meridian"></div><div class="work-card-body"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">VELD Meridian — Carried, Not Collected</h3><p class="work-card-desc">A premium EDC flashlight brand built for operators who carry what they trust. Identity-first campaign targeting post-9/11 veterans and serious EDC carriers.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="kern.html" class="work-card reveal d1"><div class="work-card-img"><img src="kern-still-hero.png" alt="KERN Traverse"></div><div class="work-card-body"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">KERN Traverse — Quiet. Ready. Yours.</h3><p class="work-card-desc">A premium EDC hip pack built for concealed carriers who live prepared without performing it. Identity-first campaign targeting serious EDC carriers and off-duty law enforcement.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="oryn.html" class="work-card reveal d2"><div class="work-card-img"><img src="oryn-hero.png" alt="ORYN Solstice"></div><div class="work-card-body"><div class="work-card-tag">Military Lifestyle</div><h3 class="work-card-title">ORYN Solstice — Zero Holds.</h3><p class="work-card-desc">A precision optic mount brand built for serious shooters who zero once and never question it. Performance-led campaign targeting competition shooters, SOF, and serious civilian shooters.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="stryd.html" class="work-card reveal d3"><div class="work-card-img"><img src="stryd-hero.png" alt="STRYD Recon"></div><div class="work-card-body"><div class="work-card-tag">Defense Tech</div><h3 class="work-card-title">STRYD Recon — It Goes Where You Can't.</h3><p class="work-card-desc">An autonomous ground reconnaissance vehicle built for denied environments. Credibility-first campaign targeting DoD program managers, defense VCs, and elite engineering talent.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Brand Identity</span><span class="tag">Recruitment</span><span class="tag">Paid Social</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="cael.html" class="work-card reveal d4"><div class="work-card-img"><img src="cael-hero.jpg" alt="CAEL Sentinel"></div><div class="work-card-body"><div class="work-card-tag">Defense Tech</div><h3 class="work-card-title">CAEL Sentinel — Nothing Gets Through.</h3><p class="work-card-desc">A man-portable counter-UAS system built for forward operating bases and critical infrastructure. Credibility-first campaign targeting DoD base security, SOCOM, and allied force procurement.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Brand Identity</span><span class="tag">Paid Social</span><span class="tag">Credibility</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="vantage.html" class="work-card reveal d5"><div class="work-card-img"><img src="vantage-hero.jpg" alt="VANTAGE Relay"></div><div class="work-card-body"><div class="work-card-tag">Defense Tech</div><h3 class="work-card-title">VANTAGE Relay — Every Voice. Every Position. Every Time.</h3><p class="work-card-desc">A wearable tactical mesh communications node built for GPS-denied, comms-contested environments. Credibility-first campaign targeting SOF units, comms officers, and DoD procurement.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Brand Identity</span><span class="tag">Recruitment</span><span class="tag">Paid Social</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="maul.html" class="work-card reveal"><div class="work-card-img"><img src="maul-hero.jpg" alt="MAUL Warden"></div><div class="work-card-body"><div class="work-card-tag">Outdoor Accessories</div><h3 class="work-card-title">MAUL Warden — Forged for the Long Road.</h3><p class="work-card-desc">A premium folding EDC knife built for serious outdoorsmen who carry what they trust. Identity-first campaign targeting backcountry hunters, veterans, and serious knife enthusiasts.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></div></a><a href="wick.html" class="work-card reveal d1"><div class="work-card-img"><img src="wick-hero.jpg" alt="WICK Ember"></div><div class="work-card-body"><div class="work-card-tag">Outdoor Accessories</div><h3 class="work-card-title">WICK Ember — Before the Cold Wins.</h3><p class="work-card-desc">A precision-machined ferro rod and fire starting system built for backcountry conditions where lighters fail. Identity-first campaign targeting backcountry hunters, survivalists, and serious outdoorsmen.</p><div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div><div class="work-card-cta">View Case Study →</div></div></a><div class="work-card work-card-coming reveal d2"><div class="work-card-img"><div class="work-card-img-placeholder"><span>Coming Soon</span></div></div><div class="work-card-body"><div class="work-card-tag">Outdoor Accessories</div><h3 class="work-card-title">TBD — Outdoor Accessories</h3><p class="work-card-desc">Third outdoor accessory spec campaign. In production.</p></div></div></div></section><section class="process" id="process">
+<section class="work-section" id="work">
   <span class="sec-num">05</span>
+  <div class="sec-header reveal">
+    <div><div class="sec-label">Our Work</div><h2 class="sec-title">Campaigns that <em>earn attention.</em></h2></div>
+  </div>
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:64px;max-width:560px">Spec campaigns demonstrating Elarith's approach across all three verticals.</p>
+  <div class="work-grid">
+
+    <a href="veld.html" class="work-card reveal">
+      <div class="work-card-img"><img src="veld-hero.png" alt="VELD Meridian"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Military Lifestyle</div>
+        <h3 class="work-card-title">VELD Meridian — Carried, Not Collected</h3>
+        <p class="work-card-desc">A premium EDC flashlight brand built for operators who carry what they trust. Identity-first campaign targeting post-9/11 veterans and serious EDC carriers.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="kern.html" class="work-card reveal d1">
+      <div class="work-card-img"><img src="kern-still-hero.png" alt="KERN Traverse"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Military Lifestyle</div>
+        <h3 class="work-card-title">KERN Traverse — Quiet. Ready. Yours.</h3>
+        <p class="work-card-desc">A premium EDC hip pack built for concealed carriers who live prepared without performing it. Identity-first campaign targeting serious EDC carriers and off-duty law enforcement.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="oryn.html" class="work-card reveal d2">
+      <div class="work-card-img"><img src="oryn-hero.png" alt="ORYN Solstice"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Military Lifestyle</div>
+        <h3 class="work-card-title">ORYN Solstice — Zero Holds.</h3>
+        <p class="work-card-desc">A precision optic mount brand built for serious shooters who zero once and never question it. Performance-led campaign targeting competition shooters, SOF, and serious civilian shooters.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="stryd.html" class="work-card reveal d3">
+      <div class="work-card-img"><img src="stryd-hero.png" alt="STRYD Recon"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Defense Tech</div>
+        <h3 class="work-card-title">STRYD Recon — It Goes Where You Can't.</h3>
+        <p class="work-card-desc">An autonomous ground reconnaissance vehicle built for denied environments. Credibility-first campaign targeting DoD program managers, defense VCs, and elite engineering talent.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Brand Identity</span><span class="tag">Recruitment</span><span class="tag">Paid Social</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="cael.html" class="work-card reveal d4">
+      <div class="work-card-img"><img src="cael-hero.jpg" alt="CAEL Sentinel"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Defense Tech</div>
+        <h3 class="work-card-title">CAEL Sentinel — Nothing Gets Through.</h3>
+        <p class="work-card-desc">A man-portable counter-UAS system built for forward operating bases and critical infrastructure. Credibility-first campaign targeting DoD base security, SOCOM, and allied force procurement.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Brand Identity</span><span class="tag">Paid Social</span><span class="tag">Credibility</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="vantage.html" class="work-card reveal d5">
+      <div class="work-card-img"><img src="vantage-hero.jpg" alt="VANTAGE Relay"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Defense Tech</div>
+        <h3 class="work-card-title">VANTAGE Relay — Every Voice. Every Position. Every Time.</h3>
+        <p class="work-card-desc">A wearable tactical mesh communications node built for GPS-denied, comms-contested environments. Credibility-first campaign targeting SOF units, comms officers, and DoD procurement.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Brand Identity</span><span class="tag">Recruitment</span><span class="tag">Paid Social</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="maul.html" class="work-card reveal">
+      <div class="work-card-img"><img src="maul-hero.jpg" alt="MAUL Warden"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Outdoor Accessories</div>
+        <h3 class="work-card-title">MAUL Warden — Forged for the Long Road.</h3>
+        <p class="work-card-desc">A premium folding EDC knife built for serious outdoorsmen who carry what they trust. Identity-first campaign targeting backcountry hunters, veterans, and serious knife enthusiasts.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="wick.html" class="work-card reveal d1">
+      <div class="work-card-img"><img src="wick-hero.jpg" alt="WICK Ember"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Outdoor Accessories</div>
+        <h3 class="work-card-title">WICK Ember — Before the Cold Wins.</h3>
+        <p class="work-card-desc">A precision-machined ferro rod and fire starting system built for backcountry conditions where lighters fail. Identity-first campaign targeting backcountry hunters, survivalists, and serious outdoorsmen.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+    <a href="lumis.html" class="work-card reveal d2">
+      <div class="work-card-img"><img src="lumis-hero.jpg" alt="LUMIS Apex"></div>
+      <div class="work-card-body">
+        <div class="work-card-tag">Outdoor Accessories</div>
+        <h3 class="work-card-title">LUMIS Apex — See Further. Go Further.</h3>
+        <p class="work-card-desc">A precision optics brand built for serious hunters and backcountry adventurers who demand clarity at extreme distance. Identity-first campaign targeting long-range hunters and serious outdoor enthusiasts.</p>
+        <div class="card-tags" style="margin-bottom:24px"><span class="tag">Hybrid Production</span><span class="tag">Paid Social</span><span class="tag">Brand Strategy</span></div>
+        <div class="work-card-cta">View Case Study →</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="process" id="process">
+  <span class="sec-num">06</span>
   <div class="sec-header reveal">
     <div><div class="sec-label">How We Work</div><h2 class="sec-title">Precise.<br><em>Relentless.</em></h2></div>
   </div>
@@ -355,7 +585,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
     <h2>Ready to be<br><em>unforgettable?</em></h2>
     <p>Tell us about your brand. We'll tell you exactly how we'd make it impossible to ignore. No fluff, no decks — just a real conversation about what's possible.</p>
     <div class="contact-info">
-      <a href="/cdn-cgi/l/email-protection#b8d0ddd4d4d7f8ddd4d9cad1ccd096d1d7" class="c-link"><div class="c-link-ico">✉</div><span class="__cf_email__" data-cfemail="fb939e979794bb9e979a89928f93d59294">[email&#160;protected]</span></a>
+      <a href="mailto:hello@elarith.io" class="c-link"><div class="c-link-ico">✉</div><span>hello@elarith.io</span></a>
       <a href="https://instagram.com/weareelarith" target="_blank" class="c-link"><div class="c-link-ico">◈</div>@weareelarith</a>
     </div>
   </div>
@@ -370,7 +600,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
         <label>Vertical</label>
         <select required>
           <option value="" disabled selected>Select your vertical</option>
-          <option>Music Hardware</option>
+          <option>Outdoor Accessory Brand</option>
           <option>Defense Tech Startup</option>
           <option>Military Lifestyle Brand</option>
           <option>Other Physical Brand</option>
@@ -378,7 +608,7 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
       </div>
       <div class="fg"><label>Tell us about your project</label><textarea rows="5" placeholder="What are you working on? What's the challenge?"></textarea></div>
       <button type="submit" class="form-btn">Send Message</button>
-      <div class="form-success" id="formSuccess">✦ &nbsp; Message received. We'll be in touch within 24 hours at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a8c0cdc4c4c7e8cdc4c9dac1dcc086c1c7">[email&#160;protected]</a></div>
+      <div class="form-success" id="formSuccess">✦ &nbsp; Message received. We'll be in touch within 24 hours at hello@elarith.io</div>
     </form>
   </div>
 </section>
@@ -388,12 +618,12 @@ footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;justify
   <div class="f-copy">© 2026 Elarith. All rights reserved.</div>
   <ul class="f-links">
     <li><a href="https://instagram.com/weareelarith" target="_blank">Instagram</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#066e636a6a6946636a67746f726e286f69">Email</a></li>
+    <li><a href="mailto:hello@elarith.io">Email</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 var canvas=document.getElementById('starfield');
 var sctx=canvas.getContext('2d');
 var stars=[];
@@ -428,4 +658,13 @@ for(var i=0;i<revEls.length;i++)obs.observe(revEls[i]);
 function countUp(el,target,dur){var start=null;dur=dur||1800;function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);var e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*target);if(p<1)requestAnimationFrame(step);else el.textContent=target;}requestAnimationFrame(step);}
 var cObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target,parseInt(e.target.dataset.target));cObs.unobserve(e.target);}});},{threshold:.5});
 var countEls=document.querySelectorAll('.count-up');
-for(var i=0;i<<!-- redeploy -->
+for(var i=0;i<countEls.length;i++)cObs.observe(countEls[i]);
+
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display='block';
+  this.reset();
+});
+</script>
+</body>
+</html>
