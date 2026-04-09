@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elarith — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #080705;
+    --surface:    #111009;
+    --surface-2:  #161410;
+    --surface-3:  #1c1a14;
+    --text:       #e8dcc8;
+    --muted:      #8a7a62;
+    --faint:      #3a3228;
+    --amber:      #c8861a;
+    --amber-glow: #f0b84a;
+    --border:     rgba(200,134,26,0.10);
+    --border-mid: rgba(200,134,26,0.22);
+    --serif:      'Cormorant Garamond', serif;
+    --sans:       'Syne', sans-serif;
+  }
+
+  html, body { background: var(--bg); color: var(--text); font-family: var(--sans); }
+
+  .pricing-section { max-width: 1300px; margin: 0 auto; padding: 120px 48px 140px; }
+
+  /* EYEBROW */
+  .section-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .section-eyebrow .rule { width: 40px; height: 1px; background: var(--amber); flex-shrink: 0; }
+  .section-eyebrow span { font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); }
+
+  .section-title { font-family: var(--serif); font-size: clamp(52px, 6vw, 78px); font-weight: 400; line-height: 1.05; color: var(--text); margin-bottom: 20px; }
+  .section-title em { font-style: italic; color: var(--amber); }
+  .section-subtitle { font-size: 17px; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 72px; }
+
+  /* ANCHOR BAR */
+  .anchor-bar { display: flex; background: var(--surface); border: 1px solid var(--border); margin-bottom: 64px; overflow: hidden; }
+  .anchor-label { display: flex; flex-direction: column; justify-content: center; padding: 28px 36px; border-right: 1px solid var(--border); min-width: 210px; background: var(--surface-2); flex-shrink: 0; }
+  .anchor-label .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .anchor-label .big { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--text); line-height: 1; text-decoration: line-through; text-decoration-color: rgba(200,134,26,0.9); }
+  .anchor-label .big sup { font-size: 16px; font-family: var(--sans); vertical-align: super; }
+  .anchor-label .sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
+  .anchor-items { display: flex; flex-wrap: wrap; align-items: center; padding: 20px 32px; gap: 0 32px; flex: 1; }
+  .anchor-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+  .anchor-item .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--amber); opacity: 0.6; flex-shrink: 0; }
+  .anchor-item span { font-size: 13px; color: var(--text); }
+
+  /* COMPARISON TABLE */
+  .comparison-wrap { margin-bottom: 56px; border: 1px solid var(--border); overflow: hidden; }
+  .comparison-table { width: 100%; border-collapse: collapse; }
+  .comparison-table thead tr { background: var(--surface-2); }
+
+  .th-feature { width: 28%; padding: 36px 36px 32px; text-align: left; border-right: 1px solid var(--border); vertical-align: bottom; background: var(--surface-2); }
+  .th-feature-label { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+
+  .th-plan { width: 24%; padding: 36px; text-align: left; border-right: 1px solid var(--border); vertical-align: top; position: relative; }
+  .th-plan { width: 24%; padding: 36px; text-align: left; border-right: 1px solid var(--border); vertical-align: top; position: relative; }
+  .th-plan:last-child { border-right: none; }
+  .th-plan.featured { background: var(--surface-3); }
+  .th-plan.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--amber), var(--amber-glow)); }
+
+  .plan-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 16px; white-space: nowrap; }
+  .plan-badge.launch { color: var(--amber); background: rgba(200,134,26,0.08); border: 1px solid var(--border-mid); }
+  .plan-badge.sustained { color: var(--amber); background: rgba(200,134,26,0.08); border: 1px solid var(--border-mid); }
+  .plan-badge.premium { color: var(--amber-glow); background: rgba(200,134,26,0.04); border: 1px solid rgba(240,184,74,0.2); }
+
+  .plan-name { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .plan-price { font-family: var(--serif); font-size: 68px; font-weight: 300; color: var(--text); line-height: 1; margin-bottom: 8px; }
+  .plan-price sup { font-size: 22px; color: var(--amber); vertical-align: super; font-family: var(--serif); }
+  .plan-cadence { font-size: 15px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.02em; }
+
+  .plan-cta { display: block; width: 100%; padding: 16px 20px; font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.22s ease; }
+  .plan-cta.primary { background: var(--amber); color: var(--bg); }
+  .plan-cta.primary:hover { background: var(--amber-glow); }
+  .plan-cta.secondary { background: transparent; color: var(--amber); border: 1px solid var(--border-mid); }
+  .plan-cta.secondary:hover { border-color: var(--amber); background: rgba(200,134,26,0.05); }
+
+  .comparison-table tbody tr { border-top: 1px solid var(--border); transition: background 0.15s ease; }
+  .comparison-table tbody tr:hover { background: rgba(200,134,26,0.02); }
+  .comparison-table tbody tr.group-header { background: var(--surface-2); }
+  .comparison-table tbody tr.group-header td { padding: 13px 36px 11px; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); border-right: 1px solid var(--border); }
+  .comparison-table tbody tr.group-header td:last-child { border-right: none; }
+
+  .td-feature { padding: 18px 36px; border-right: 1px solid var(--border); vertical-align: middle; }
+  .td-feature .feat-name { font-size: 15px; color: var(--text); margin-bottom: 2px; }
+  .td-feature .feat-sub { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  .td-val { padding: 18px 32px; border-right: 1px solid var(--border); vertical-align: middle; text-align: left; }
+  .td-val:last-child { border-right: none; }
+  .td-val.featured { background: rgba(22,20,16,0.6); }
+
+  .check { color: var(--amber); font-size: 17px; }
+  .dash  { color: var(--faint); font-size: 20px; }
+  .val-text  { font-size: 15px; color: var(--text); }
+  .val-muted { font-size: 14px; color: var(--muted); }
+  .val-amber { font-size: 15px; color: var(--amber); font-weight: 600; }
+  .val-num   { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--text); }
+  .val-num-amber { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--amber); }
+
+  /* TURNAROUND STRIP */
+  .turnaround-strip { display: flex; border: 1px solid var(--border); overflow: hidden; margin-bottom: 64px; }
+  .t-item { flex: 1; padding: 26px 32px; border-right: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+  .t-item:last-child { border-right: none; }
+  .t-icon { color: var(--amber); font-size: 18px; opacity: 0.6; flex-shrink: 0; }
+  .t-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .t-value { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--text); line-height: 1.2; }
+
+  /* INCLUDED GRID */
+  .included-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .included-title { font-family: var(--serif); font-size: 34px; font-weight: 400; color: var(--text); }
+  .included-note { font-size: 13px; color: var(--muted); }
+  .included-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 56px; }
+  .included-item { background: var(--surface); padding: 28px 28px 32px; }
+  .i-number { font-family: var(--serif); font-size: 42px; font-weight: 300; color: var(--amber); opacity: 0.25; line-height: 1; margin-bottom: 12px; }
+  .i-title { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+  .i-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* FOOTER */
+  .pricing-footer { display: flex; align-items: center; justify-content: space-between; padding: 40px 48px; border: 1px solid var(--border); background: var(--surface); }
+  .footer-headline { font-family: var(--serif); font-size: 30px; font-weight: 400; color: var(--text); margin-bottom: 6px; }
+  .footer-sub { font-size: 14px; color: var(--muted); }
+  .footer-cta { display: inline-block; padding: 15px 40px; background: var(--amber); border: 1px solid var(--amber); color: var(--bg); font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.22s ease; white-space: nowrap; flex-shrink: 0; }
+  .footer-cta:hover { background: var(--amber-glow); border-color: var(--amber-glow); color: var(--bg); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (max-width: 900px) {
+    .pricing-section { padding: 80px 20px 100px; }
+    .anchor-bar { flex-direction: column; }
+    .anchor-label { border-right: none; border-bottom: 1px solid var(--border); }
+    .comparison-wrap { overflow-x: auto; }
+    .comparison-table { min-width: 720px; }
+    .included-grid { grid-template-columns: 1fr; }
+    .turnaround-strip { flex-direction: column; }
+    .t-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .pricing-footer { flex-direction: column; gap: 24px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<section class="pricing-section">
+
+  <div class="section-eyebrow reveal">
+    <div class="rule"></div>
+    <span>06 · Pricing</span>
+  </div>
+  <h2 class="section-title reveal reveal-delay-1">You build the product.<br><em>We make it impossible to ignore.</em></h2>
+  <p class="section-subtitle reveal reveal-delay-2">A traditional campaign shoot runs $8,000–$17,500 before you see a single asset. Elarith delivers the same result — hero images, campaign stills, platform-ready exports, full ad copy — in days, not weeks, at a fraction of the cost.</p>
+
+  <div class="anchor-bar reveal reveal-delay-2">
+    <div class="anchor-label">
+      <div class="eyebrow">Traditional shoot</div>
+      <div class="big"><sup>$</sup>8–17k</div>
+      <div class="sub">per campaign · 3–6 week turnaround</div>
+    </div>
+    <div class="anchor-items">
+      <div class="anchor-item"><div class="dot"></div><span>Photographer day rate · $2,500–$5,000</span></div>
+      <div class="anchor-item"><div class="dot"></div><span>Location scout + permit · $500–$2,000</span></div>
+      <div class="anchor-item"><div class="dot"></div><span>Talent + styling · $1,500–$4,500</span></div>
+      <div class="anchor-item"><div class="dot"></div><span>Post-production · $1,500–$4,000</span></div>
+      <div class="anchor-item"><div class="dot"></div><span>5–8 usable assets · no guarantee</span></div>
+    </div>
+  </div>
+
+  <div class="comparison-wrap reveal reveal-delay-3">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th class="th-feature"><div class="th-feature-label">What's included</div></th>
+
+          <!-- ONE-OFF -->
+          <th class="th-plan">
+            <div class="plan-badge launch">Launch</div>
+            <div class="plan-name">Single Campaign</div>
+            <div class="plan-price"><sup>$</sup>3,500</div>
+            <div class="plan-cadence">single campaign · pay once</div>
+            <div style="height:66px;"></div>
+            <a href="#contact" class="plan-cta primary">Book a Call →</a>
+          
+            </th>
+
+          <!-- SUSTAINED -->
+          <th class="th-plan">
+            <div class="plan-badge sustained">Momentum</div>
+            <div class="plan-name">Momentum · 3-Month Retainer</div>
+            <div class="plan-price"><sup>$</sup>6,500</div>
+            <div class="plan-cadence">paid in full · 3 months</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px 14px;background:rgba(200,134,26,0.06);border:1px solid rgba(200,134,26,0.15);margin-bottom:20px;">
+              <span style="font-family:var(--serif);font-size:22px;font-weight:300;color:var(--amber);">$2,167</span>
+              <span style="font-size:11px;color:var(--muted);letter-spacing:0.05em;">/ month · across 3 months</span>
+            </div>
+            <a href="#contact" class="plan-cta primary">Book a Call →</a>
+          
+            </th>
+
+          <!-- PREMIUM -->
+          <th class="th-plan">
+            <div class="plan-badge premium">Velocity <span style="opacity:0.5;font-weight:400;">(Premium)</span></div>
+            <div class="plan-name">Velocity · 3-Month Retainer</div>
+            <div class="plan-price"><sup>$</sup>11,500</div>
+            <div class="plan-cadence">paid in full · 3 months</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px 14px;background:rgba(200,134,26,0.06);border:1px solid rgba(200,134,26,0.15);margin-bottom:20px;">
+              <span style="font-family:var(--serif);font-size:22px;font-weight:300;color:var(--amber);">$3,833</span>
+              <span style="font-size:11px;color:var(--muted);letter-spacing:0.05em;">/ month · across 3 months</span>
+            </div>
+            <a href="#contact" class="plan-cta primary">Book a Call →</a>
+          
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="group-header"><td>Briefing &amp; Review</td><td></td><td></td><td></td></tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Pre-campaign brief</div><div class="feat-sub">align on direction before production</div></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Post-delivery Loom walkthrough</div><div class="feat-sub">recorded review · watch on your time</div></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Live strategy call</div><div class="feat-sub">scheduled · revisions &amp; feedback</div></td>
+          <td class="td-val"><span class="dash">—</span></td>
+          <td class="td-val"><span class="val-amber">Bi-weekly</span></td>
+          <td class="td-val"><span class="val-amber">Weekly</span></td>
+        </tr>
+
+
+
+        <tr class="group-header"><td>Campaign Output</td><td></td><td></td><td></td></tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Hero images</div><div class="feat-sub">16:9 cinematic crop</div></td>
+          <td class="td-val"><span class="val-num-amber">2</span><br><span class="val-muted" style="font-size:14px;">one-time</span></td>
+          <td class="td-val"><span class="val-num-amber">5 per month</span></td>
+          <td class="td-val"><span class="val-num-amber">8 per month</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Campaign stills</div><div class="feat-sub">4:3 editorial format</div></td>
+          <td class="td-val"><span class="val-amber">5 stills</span><br><span class="val-muted" style="font-size:14px;">one-time</span></td>
+          <td class="td-val"><span class="val-amber">7 stills per month</span></td>
+          <td class="td-val"><span class="val-amber">10 stills per month</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Platform exports</div><div class="feat-sub">1:1 · 4:5 · 9:16 · 16:9 per image</div></td>
+          <td class="td-val"><span class="val-amber">28 assets</span><br><span class="val-muted" style="font-size:14px;">one-time</span></td>
+          <td class="td-val"><span class="val-amber">48 assets per month</span></td>
+          <td class="td-val"><span class="val-amber">72 assets per month</span></td>
+        </tr>
+
+
+        <tr class="group-header"><td>Written Campaign</td><td></td><td></td><td></td></tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Ad copy suite</div><div class="feat-sub">headlines, body, CTAs</div></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Organic social captions</div><div class="feat-sub">Instagram · Meta</div></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+        </tr>
+
+        <tr class="group-header"><td>Premium Inclusions</td><td></td><td></td><td></td></tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Short-form video</div><div class="feat-sub">Reel / Story · 15–30 sec</div></td>
+          <td class="td-val"><span class="dash">—</span></td>
+          <td class="td-val"><span class="dash">—</span></td>
+          <td class="td-val"><span class="val-amber">2 per month</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Compounding asset library</div><div class="feat-sub">assets compound every month</div></td>
+          <td class="td-val"><span class="dash">—</span></td>
+          <td class="td-val"><span class="val-amber">144+ after 3 mo</span></td>
+          <td class="td-val"><span class="val-amber">216+ after 3 mo</span></td>
+        </tr>
+
+        <tr class="group-header"><td>Terms</td><td></td><td></td><td></td></tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Turnaround</div></td>
+          <td class="td-val"><span class="val-amber">7–10 business days</span></td>
+          <td class="td-val"><span class="val-amber">10–14 business days</span></td>
+          <td class="td-val"><span class="val-amber">10–14 business days</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Payment</div></td>
+          <td class="td-val"><span class="val-text">Paid in full</span></td>
+          <td class="td-val"><span class="val-text">Paid in full</span></td>
+          <td class="td-val"><span class="val-text">Paid in full</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-feature"><div class="feat-name">Full asset ownership</div></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+          <td class="td-val"><span class="check">◈</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="turnaround-strip reveal reveal-delay-3">
+    <div class="t-item"><span class="t-icon">◈</span><div><div class="t-label">Asset Ownership</div><div class="t-value">100% Yours. Forever.</div></div></div>
+    <div class="t-item"><span class="t-icon">◈</span><div><div class="t-label">Formats Per Image</div><div class="t-value">4 Platform Crops</div></div></div>
+    <div class="t-item"><span class="t-icon">◈</span><div><div class="t-label">Verticals Served</div><div class="t-value">3 Verticals. One Standard.</div></div></div>
+    <div class="t-item"><span class="t-icon">◈</span><div><div class="t-label">Verticals</div><div class="t-value">Military Lifestyle<br>Defense Tech<br>Outdoor Accessories</div></div></div>
+  </div>
+
+  <div class="reveal reveal-delay-4">
+    <div class="included-header">
+      <h3 class="included-title">Every campaign includes.</h3>
+      <span class="included-note">No add-ons. No hidden fees.</span>
+    </div>
+    <div class="included-grid">
+      <div class="included-item"><div class="i-number">01</div><div class="i-title">Campaign Stills</div><div class="i-desc">Hero images + campaign stills. Editorial-grade cinematic production. Your product in the right environment, the right light, every time.</div></div>
+      <div class="included-item"><div class="i-number">02</div><div class="i-title">Platform Exports</div><div class="i-desc">Every image delivered in all 4 formats — 1:1, 4:5, 9:16, and 16:9. Ad-ready assets for Meta and Instagram. Out of the box.</div></div>
+      <div class="included-item"><div class="i-number">03</div><div class="i-title">Ad Copy Suite</div><div class="i-desc">Headlines, body copy, and CTAs written for every asset. Cold, warm, and retargeting variants. Copy that earns attention in the feed.</div></div>
+      <div class="included-item"><div class="i-number">04</div><div class="i-title">Social Captions</div><div class="i-desc">Organic captions for Instagram and Meta. Brand voice locked from day one. Content that builds identity, not just awareness.</div></div>
+      <div class="included-item"><div class="i-number">05</div><div class="i-title">Full Asset Ownership</div><div class="i-desc">Everything delivered is yours. No licensing, no usage fees, no restrictions. Run it wherever, whenever, for as long as you want.</div></div>
+      <div class="included-item"><div class="i-number">06</div><div class="i-title">Pre-Campaign Brief</div><div class="i-desc">Every campaign starts with a dedicated brief call. Direction locked before production begins. No guesswork, no revisions for the wrong reason.</div></div>
+    </div>
+  </div>
+
+  <div class="pricing-footer reveal reveal-delay-4">
+    <div>
+      <div class="footer-headline">Ready to be impossible to ignore?</div>
+      <div class="footer-sub">Tell us about your brand. We'll tell you exactly how we'd make it impossible to ignore.</div>
+    </div>
+    <a href="#contact" class="footer-cta">Book a Call →</a>
+  </div>
+
+</section>
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.95) el.classList.add('visible');
+    });
+  });
+</script>
+</body>
+</html>
